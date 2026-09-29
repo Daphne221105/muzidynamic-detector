@@ -1,242 +1,299 @@
 <!DOCTYPE html>
 <html lang="ms">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MuziDynamic Detector</title>
 
-  <title>MuziDynamic Detector</title>
+<style>
+* { box-sizing: border-box; }
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg,#eeeaff,#dcf7ff);
+  color: #29294a;
+}
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #eeeaff, #dcf7ff);
-      color: #29294a;
-    }
+.container {
+  width: 92%;
+  max-width: 900px;
+  margin: 35px auto;
+}
 
-    .container {
-      width: 92%;
-      max-width: 900px;
-      margin: 35px auto;
-    }
+.header {
+  text-align: center;
+  margin-bottom: 25px;
+}
 
-    .header {
-      text-align: center;
-      margin-bottom: 25px;
-    }
+h1 {
+  font-size: 42px;
+  margin: 0;
+}
 
-    h1 {
-      font-size: 42px;
-      margin: 0;
-    }
+.tagline {
+  margin-top: 8px;
+  font-size: 20px;
+  color: #777;
+}
 
-    .tagline {
-      margin-top: 8px;
-      font-size: 20px;
-      color: #777;
-    }
+.card {
+  background: white;
+  padding: 32px;
+  border-radius: 28px;
+  box-shadow: 0 12px 35px rgba(0,0,0,.10);
+  text-align: center;
+  margin-bottom: 22px;
+}
 
-    .card {
-      background: white;
-      padding: 32px;
-      border-radius: 28px;
-      box-shadow: 0 12px 35px rgba(0,0,0,0.10);
-      text-align: center;
-      margin-bottom: 22px;
-    }
+button {
+  border: none;
+  padding: 16px 26px;
+  border-radius: 16px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 6px;
+  touch-action: manipulation;
+}
 
-    button {
-      border: none;
-      padding: 16px 26px;
-      border-radius: 16px;
-      font-size: 18px;
-      font-weight: bold;
-      cursor: pointer;
-      margin: 6px;
-    }
+.primary {
+  background: #7357e8;
+  color: white;
+}
 
-    .primary {
-      background: #7357e8;
-      color: white;
-    }
+.secondary {
+  background: #eeeeff;
+  color: #5541b7;
+}
 
-    .secondary {
-      background: #eeeeff;
-      color: #5541b7;
-    }
+button:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+}
 
-    button:disabled {
-      opacity: 0.45;
-      cursor: not-allowed;
-    }
+#micStatus {
+  margin-top: 15px;
+  font-weight: bold;
+}
 
-    #micStatus {
-      margin-top: 15px;
-      font-weight: bold;
-    }
+.meter-background {
+  width: 100%;
+  height: 42px;
+  background: #eee;
+  border-radius: 25px;
+  overflow: hidden;
+  margin-top: 25px;
+}
 
-    .meter-background {
-      width: 100%;
-      height: 42px;
-      background: #eeeeee;
-      border-radius: 25px;
-      overflow: hidden;
-      margin-top: 25px;
-    }
+#meter {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    #74b9ff,
+    #55efc4,
+    #ffe66d,
+    #ff7675
+  );
+  border-radius: 25px;
+  transition: width .12s ease-out;
+}
 
-    #meter {
-      width: 0%;
-      height: 100%;
-      background: linear-gradient(
-        90deg,
-        #74b9ff,
-        #55efc4,
-        #ffe66d,
-        #ff7675
-      );
-      border-radius: 25px;
-      transition: width 0.12s ease-out;
-    }
+#dbValue {
+  font-size: 38px;
+  font-weight: bold;
+  margin-top: 12px;
+}
 
-    #dbValue {
-      font-size: 38px;
-      font-weight: bold;
-      margin-top: 12px;
-    }
+#signalStatus {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 9px 16px;
+  background: #eee;
+  border-radius: 14px;
+  font-weight: bold;
+}
 
-    #signalStatus {
-      display: inline-block;
-      margin-top: 8px;
-      padding: 9px 16px;
-      background: #eeeeee;
-      border-radius: 14px;
-      font-weight: bold;
-    }
+.section-title {
+  font-size: 26px;
+  font-weight: bold;
+}
 
-    .calibration-title {
-      font-size: 26px;
-      font-weight: bold;
-    }
+#instruction {
+  margin-top: 15px;
+  font-size: 19px;
+  line-height: 1.5;
+}
 
-    #instruction {
-      margin-top: 15px;
-      font-size: 19px;
-      line-height: 1.5;
-    }
+#bigSymbol {
+  font-size: 85px;
+  font-weight: bold;
+  margin: 18px 0;
+  min-height: 100px;
+}
 
-    #bigSymbol {
-      font-size: 85px;
-      font-weight: bold;
-      margin: 18px 0;
-      min-height: 100px;
-    }
+#countdown {
+  font-size: 34px;
+  font-weight: bold;
+  margin: 15px 0;
+  color: #7357e8;
+}
 
-    #countdown {
-      font-size: 34px;
-      font-weight: bold;
-      margin: 15px 0;
-      color: #7357e8;
-    }
+.progress {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 25px;
+}
 
-    .progress {
-      display: flex;
-      justify-content: space-between;
-      gap: 8px;
-      margin-top: 25px;
-    }
+.step {
+  flex: 1;
+  padding: 12px 5px;
+  border-radius: 12px;
+  background: #eee;
+  font-weight: bold;
+}
 
-    .step {
-      flex: 1;
-      padding: 12px 5px;
-      border-radius: 12px;
-      background: #eeeeee;
-      font-weight: bold;
-    }
+.step.done {
+  background: #dff8e8;
+}
 
-    .step.done {
-      background: #dff8e8;
-    }
+.step.active {
+  outline: 3px solid #7357e8;
+}
 
-    .step.active {
-      outline: 3px solid #7357e8;
-    }
+.p { color: #4a9ee8; }
+.mp { color: #38ad7a; }
+.mf { color: #e3a323; }
+.f { color: #ef5c72; }
 
-    .p {
-      color: #4a9ee8;
-    }
+#results {
+  display: none;
+  margin-top: 25px;
+  text-align: left;
+}
 
-    .mp {
-      color: #38ad7a;
-    }
+.result-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 15px;
+  margin: 7px 0;
+  background: #f7f7fb;
+  border-radius: 12px;
+  font-size: 18px;
+}
 
-    .mf {
-      color: #e3a323;
-    }
+.success {
+  margin-top: 20px;
+  padding: 15px;
+  background: #dff8e8;
+  border-radius: 15px;
+  font-weight: bold;
+  text-align: center;
+}
 
-    .f {
-      color: #ef5c72;
-    }
+.warning {
+  margin-top: 20px;
+  padding: 15px;
+  background: #fff0cf;
+  border-radius: 15px;
+  font-weight: bold;
+  text-align: center;
+}
 
-    #results {
-      display: none;
-      margin-top: 25px;
-      text-align: left;
-    }
+.note {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #888;
+  line-height: 1.5;
+}
 
-    .result-row {
-      display: flex;
-      justify-content: space-between;
-      padding: 12px 15px;
-      margin: 7px 0;
-      background: #f7f7fb;
-      border-radius: 12px;
-      font-size: 18px;
-    }
+/* PRACTICE MODE */
 
-    .success {
-      margin-top: 20px;
-      padding: 15px;
-      background: #dff8e8;
-      border-radius: 15px;
-      font-weight: bold;
-      text-align: center;
-    }
+.practice-card {
+  display: none;
+}
 
-    .warning {
-      margin-top: 20px;
-      padding: 15px;
-      background: #fff0cf;
-      border-radius: 15px;
-      font-weight: bold;
-      text-align: center;
-    }
+.practice-label {
+  color: #777;
+  font-size: 18px;
+  margin-top: 25px;
+}
 
-    .note {
-      margin-top: 20px;
-      font-size: 13px;
-      color: #888;
-      line-height: 1.5;
-    }
+#currentDynamic {
+  font-size: 105px;
+  font-weight: bold;
+  line-height: 1;
+  margin-top: 10px;
+}
 
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 30px;
-      }
+#dynamicMeaning {
+  font-size: 25px;
+  font-weight: bold;
+  margin: 10px 0 25px;
+}
 
-      .card {
-        padding: 22px;
-      }
+.dynamic-scale {
+  position: relative;
+  margin: 30px 0 10px;
+}
 
-      #bigSymbol {
-        font-size: 65px;
-      }
-    }
-  </style>
+.scale-bar {
+  height: 35px;
+  border-radius: 20px;
+  background: linear-gradient(
+    90deg,
+    #74b9ff 0%,
+    #74b9ff 24%,
+    #55d99b 26%,
+    #55d99b 49%,
+    #ffd166 51%,
+    #ffd166 74%,
+    #ff7087 76%,
+    #ff7087 100%
+  );
+}
+
+.scale-labels {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  margin-top: 10px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#practiceDb {
+  margin-top: 25px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#practiceFeedback {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 12px 18px;
+  border-radius: 14px;
+  background: #eee;
+  font-weight: bold;
+}
+
+.calibration-needed {
+  padding: 16px;
+  margin-top: 20px;
+  border-radius: 15px;
+  background: #fff0cf;
+  font-weight: bold;
+}
+
+@media (max-width:600px) {
+  h1 { font-size:30px; }
+  .card { padding:22px; }
+  #bigSymbol { font-size:65px; }
+  #currentDynamic { font-size:80px; }
+}
+</style>
 </head>
 
 <body>
@@ -245,20 +302,15 @@
 
   <div class="header">
     <h1>🎵 MuziDynamic Detector</h1>
-
     <div class="tagline">
       Dengar • Nyanyi • Ukur • Kuasai
     </div>
   </div>
 
-
-  <!-- MICROPHONE CARD -->
-
+  <!-- MICROPHONE -->
   <div class="card">
 
-    <button
-      id="micButton"
-      class="primary">
+    <button id="micButton" class="primary">
       🎤 Aktifkan Mikrofon
     </button>
 
@@ -266,14 +318,11 @@
       Mikrofon belum diaktifkan.
     </div>
 
-
     <div class="meter-background">
       <div id="meter"></div>
     </div>
 
-    <div id="dbValue">
-      -- dB
-    </div>
+    <div id="dbValue">-- dB</div>
 
     <div id="signalStatus">
       Menunggu input
@@ -282,11 +331,10 @@
   </div>
 
 
-  <!-- CALIBRATION CARD -->
-
+  <!-- CALIBRATION -->
   <div class="card">
 
-    <div class="calibration-title">
+    <div class="section-title">
       🎚️ Calibration Mode
     </div>
 
@@ -296,12 +344,9 @@
       dan empat aras dinamik.
     </div>
 
-    <div id="bigSymbol">
-      🎵
-    </div>
+    <div id="bigSymbol">🎵</div>
 
     <div id="countdown"></div>
-
 
     <button
       id="calibrateButton"
@@ -310,13 +355,11 @@
       Mulakan Calibration
     </button>
 
-
     <button
       id="resetButton"
       class="secondary">
       Reset Calibration
     </button>
-
 
     <div class="progress">
 
@@ -324,30 +367,16 @@
         🤫 Senyap
       </div>
 
-      <div class="step" id="stepP">
-        p
-      </div>
-
-      <div class="step" id="stepMP">
-        mp
-      </div>
-
-      <div class="step" id="stepMF">
-        mf
-      </div>
-
-      <div class="step" id="stepF">
-        f
-      </div>
+      <div class="step" id="stepP">p</div>
+      <div class="step" id="stepMP">mp</div>
+      <div class="step" id="stepMF">mf</div>
+      <div class="step" id="stepF">f</div>
 
     </div>
 
-
     <div id="results">
 
-      <h3>
-        Keputusan Calibration
-      </h3>
+      <h3>Keputusan Calibration</h3>
 
       <div class="result-row">
         <span>🤫 Noise Floor</span>
@@ -378,11 +407,59 @@
 
     </div>
 
-
     <div class="note">
       Calibration adalah relatif kepada mikrofon,
       jarak dan keadaan persekitaran semasa.
       Kekalkan kedudukan peranti semasa penggunaan.
+    </div>
+
+  </div>
+
+
+  <!-- PRACTICE MODE -->
+  <div class="card practice-card" id="practiceCard">
+
+    <div class="section-title">
+      🎤 Practice Mode
+    </div>
+
+    <div class="practice-label">
+      DINAMIK SEMASA
+    </div>
+
+    <div id="currentDynamic">
+      —
+    </div>
+
+    <div id="dynamicMeaning">
+      Senyap
+    </div>
+
+    <div class="dynamic-scale">
+
+      <div class="scale-bar"></div>
+
+      <div class="scale-labels">
+        <span class="p">p</span>
+        <span class="mp">mp</span>
+        <span class="mf">mf</span>
+        <span class="f">f</span>
+      </div>
+
+    </div>
+
+    <div id="practiceDb">
+      -- dB
+    </div>
+
+    <div id="practiceFeedback">
+      🎵 Hasilkan bunyi untuk mula
+    </div>
+
+    <div class="note">
+      MuziDynamic mengklasifikasikan aras bunyi
+      secara relatif berdasarkan calibration semasa.
+      Ia bukan ukuran dB SPL mutlak.
     </div>
 
   </div>
@@ -392,9 +469,7 @@
 
 <script>
 
-/* ===================================
-   ELEMENTS
-=================================== */
+/* ELEMENTS */
 
 const micButton =
   document.getElementById("micButton");
@@ -432,27 +507,37 @@ const results =
 const validationMessage =
   document.getElementById("validationMessage");
 
+const practiceCard =
+  document.getElementById("practiceCard");
 
-/* ===================================
-   AUDIO VARIABLES
-=================================== */
+const currentDynamic =
+  document.getElementById("currentDynamic");
+
+const dynamicMeaning =
+  document.getElementById("dynamicMeaning");
+
+const practiceDb =
+  document.getElementById("practiceDb");
+
+const practiceFeedback =
+  document.getElementById("practiceFeedback");
+
+
+/* AUDIO */
 
 let audioContext;
 let analyser;
 let dataArray;
 
 let smoothedDb = -80;
-
 let currentRawDb = -80;
 
 let microphoneReady = false;
-
 let calibrationRunning = false;
+let calibrationValid = false;
 
 
-/* ===================================
-   CALIBRATION DATA
-=================================== */
+/* CALIBRATION DATA */
 
 let calibration = {
   noise: null,
@@ -463,15 +548,22 @@ let calibration = {
 };
 
 
-/* ===================================
-   MICROPHONE
-=================================== */
+/* CLASSIFICATION BOUNDARIES */
+
+let boundaries = {
+  pMp: null,
+  mpMf: null,
+  mfF: null,
+  activeGate: null
+};
+
+
+/* MICROPHONE */
 
 micButton.addEventListener(
   "click",
   startMicrophone
 );
-
 
 async function startMicrophone() {
 
@@ -480,50 +572,37 @@ async function startMicrophone() {
     micStatus.textContent =
       "Meminta kebenaran mikrofon...";
 
-
     const stream =
       await navigator.mediaDevices.getUserMedia({
-
         audio: {
           echoCancellation: false,
           noiseSuppression: false,
           autoGainControl: false
         }
-
       });
-
 
     audioContext =
       new (window.AudioContext ||
-           window.webkitAudioContext)();
-
+      window.webkitAudioContext)();
 
     if (audioContext.state === "suspended") {
       await audioContext.resume();
     }
 
-
     const source =
       audioContext.createMediaStreamSource(stream);
-
 
     analyser =
       audioContext.createAnalyser();
 
     analyser.fftSize = 2048;
 
-
     source.connect(analyser);
 
-
     dataArray =
-      new Float32Array(
-        analyser.fftSize
-      );
-
+      new Float32Array(analyser.fftSize);
 
     microphoneReady = true;
-
 
     micStatus.textContent =
       "✅ Mikrofon aktif";
@@ -534,12 +613,11 @@ async function startMicrophone() {
     calibrateButton.disabled =
       false;
 
-
     updateAudio();
 
   }
 
-  catch (error) {
+  catch(error) {
 
     console.error(error);
 
@@ -547,53 +625,33 @@ async function startMicrophone() {
       "❌ Mikrofon tidak dapat diakses.";
 
   }
-
 }
 
 
-/* ===================================
-   AUDIO ENGINE
-=================================== */
+/* AUDIO ENGINE */
 
 function updateAudio() {
 
-  analyser.getFloatTimeDomainData(
-    dataArray
-  );
-
+  analyser.getFloatTimeDomainData(dataArray);
 
   let sumSquares = 0;
   let peak = 0;
 
+  for (let i = 0; i < dataArray.length; i++) {
 
-  for (
-    let i = 0;
-    i < dataArray.length;
-    i++
-  ) {
+    const sample = dataArray[i];
 
-    const sample =
-      dataArray[i];
+    sumSquares += sample * sample;
 
-    sumSquares +=
-      sample * sample;
-
-    const absolute =
-      Math.abs(sample);
+    const absolute = Math.abs(sample);
 
     if (absolute > peak) {
       peak = absolute;
     }
-
   }
 
-
   const rms =
-    Math.sqrt(
-      sumSquares /
-      dataArray.length
-    );
-
+    Math.sqrt(sumSquares / dataArray.length);
 
   if (rms > 0.00001) {
 
@@ -603,44 +661,44 @@ function updateAudio() {
   } else {
 
     currentRawDb = -100;
-
   }
 
-
   currentRawDb =
-    Math.max(
-      -80,
-      Math.min(0, currentRawDb)
-    );
-
+    Math.max(-80, Math.min(0,currentRawDb));
 
   smoothedDb =
     (smoothedDb * 0.82) +
     (currentRawDb * 0.18);
 
-
   let meterPercent =
-    ((smoothedDb + 80) / 80)
-    * 100;
-
+    ((smoothedDb + 80) / 80) * 100;
 
   meterPercent =
-    Math.max(
-      0,
-      Math.min(100, meterPercent)
-    );
-
+    Math.max(0,Math.min(100,meterPercent));
 
   meter.style.width =
     meterPercent + "%";
 
-
   dbValue.textContent =
-    smoothedDb.toFixed(1)
-    + " dB";
+    smoothedDb.toFixed(1) + " dB";
 
 
-  if (smoothedDb < -55) {
+  /* General signal status */
+
+  if (peak > 0.95) {
+
+    signalStatus.textContent =
+      "⚠️ Input terlalu kuat / Clipping";
+
+    signalStatus.style.background =
+      "#ffd6d6";
+
+  }
+
+  else if (
+    calibrationValid &&
+    smoothedDb < boundaries.activeGate
+  ) {
 
     signalStatus.textContent =
       "🤫 Senyap / Input sangat lemah";
@@ -650,13 +708,16 @@ function updateAudio() {
 
   }
 
-  else if (peak > 0.95) {
+  else if (
+    !calibrationValid &&
+    smoothedDb < -55
+  ) {
 
     signalStatus.textContent =
-      "⚠️ Input terlalu kuat / Clipping";
+      "🤫 Senyap / Input sangat lemah";
 
     signalStatus.style.background =
-      "#ffd6d6";
+      "#eeeeee";
 
   }
 
@@ -671,22 +732,27 @@ function updateAudio() {
   }
 
 
-  requestAnimationFrame(
-    updateAudio
-  );
+  if (
+    calibrationValid &&
+    !calibrationRunning
+  ) {
 
+    updatePracticeMode(
+      smoothedDb,
+      peak
+    );
+  }
+
+  requestAnimationFrame(updateAudio);
 }
 
 
-/* ===================================
-   CALIBRATION
-=================================== */
+/* CALIBRATION */
 
 calibrateButton.addEventListener(
   "click",
   runCalibration
 );
-
 
 async function runCalibration() {
 
@@ -695,25 +761,21 @@ async function runCalibration() {
     return;
   }
 
-
   calibrationRunning = true;
+  calibrationValid = false;
+
+  practiceCard.style.display = "none";
 
   calibrateButton.disabled = true;
 
   resetProgress();
 
-  results.style.display =
-    "none";
+  results.style.display = "none";
 
-
-  /*
-    NOISE FLOOR
-  */
 
   setActiveStep("stepNoise");
 
-  bigSymbol.textContent =
-    "🤫";
+  bigSymbol.textContent = "🤫";
 
   instruction.textContent =
     "SENYAP. Jangan bercakap atau memainkan alat muzik.";
@@ -725,10 +787,6 @@ async function runCalibration() {
 
   markDone("stepNoise");
 
-
-  /*
-    P
-  */
 
   setActiveStep("stepP");
 
@@ -746,10 +804,6 @@ async function runCalibration() {
   markDone("stepP");
 
 
-  /*
-    MP
-  */
-
   setActiveStep("stepMP");
 
   bigSymbol.innerHTML =
@@ -765,10 +819,6 @@ async function runCalibration() {
 
   markDone("stepMP");
 
-
-  /*
-    MF
-  */
 
   setActiveStep("stepMF");
 
@@ -786,10 +836,6 @@ async function runCalibration() {
   markDone("stepMF");
 
 
-  /*
-    F
-  */
-
   setActiveStep("stepF");
 
   bigSymbol.innerHTML =
@@ -806,104 +852,63 @@ async function runCalibration() {
   markDone("stepF");
 
 
-  countdown.textContent =
-    "";
+  countdown.textContent = "";
 
-  bigSymbol.textContent =
-    "✅";
+  bigSymbol.textContent = "✅";
 
   instruction.textContent =
     "Calibration selesai!";
 
-
   finishCalibration();
 
+  calibrationRunning = false;
 
-  calibrationRunning =
-    false;
-
-  calibrateButton.disabled =
-    false;
-
+  calibrateButton.disabled = false;
 }
 
 
-/* ===================================
-   COUNTDOWN
-=================================== */
+/* COUNTDOWN */
 
 async function preparationCountdown() {
 
-  for (
-    let i = 3;
-    i >= 1;
-    i--
-  ) {
+  for (let i = 3; i >= 1; i--) {
 
     countdown.textContent =
       "Bersedia... " + i;
 
     await sleep(700);
-
   }
 
   countdown.textContent =
     "🎤 Dengar...";
-
 }
 
 
-/* ===================================
-   COLLECT SAMPLE
-=================================== */
+/* SAMPLE COLLECTION */
 
-async function collectSample(
-  duration
-) {
+async function collectSample(duration) {
 
   const samples = [];
 
-  const start =
-    performance.now();
-
+  const start = performance.now();
 
   while (
-    performance.now() - start
-    < duration
+    performance.now() - start < duration
   ) {
 
-    samples.push(
-      currentRawDb
-    );
+    samples.push(currentRawDb);
 
     await sleep(50);
-
   }
 
-
-  /*
-    Susun data dan ambil median.
-    Median lebih tahan terhadap
-    bunyi tiba-tiba.
-  */
-
-  samples.sort(
-    (a, b) => a - b
-  );
-
+  samples.sort((a,b) => a-b);
 
   const middle =
-    Math.floor(
-      samples.length / 2
-    );
-
+    Math.floor(samples.length / 2);
 
   let median;
 
-
-  if (
-    samples.length % 2 === 0
-  ) {
+  if (samples.length % 2 === 0) {
 
     median =
       (
@@ -911,90 +916,58 @@ async function collectSample(
         samples[middle]
       ) / 2;
 
+  } else {
+
+    median = samples[middle];
   }
-
-  else {
-
-    median =
-      samples[middle];
-
-  }
-
 
   return median;
-
 }
 
 
-/* ===================================
-   FINISH + VALIDATION
-=================================== */
+/* FINISH CALIBRATION */
 
 function finishCalibration() {
 
   document.getElementById(
     "resultNoise"
   ).textContent =
-    calibration.noise.toFixed(1)
-    + " dB";
-
+    calibration.noise.toFixed(1) + " dB";
 
   document.getElementById(
     "resultP"
   ).textContent =
-    calibration.p.toFixed(1)
-    + " dB";
-
+    calibration.p.toFixed(1) + " dB";
 
   document.getElementById(
     "resultMP"
   ).textContent =
-    calibration.mp.toFixed(1)
-    + " dB";
-
+    calibration.mp.toFixed(1) + " dB";
 
   document.getElementById(
     "resultMF"
   ).textContent =
-    calibration.mf.toFixed(1)
-    + " dB";
-
+    calibration.mf.toFixed(1) + " dB";
 
   document.getElementById(
     "resultF"
   ).textContent =
-    calibration.f.toFixed(1)
-    + " dB";
+    calibration.f.toFixed(1) + " dB";
 
-
-  results.style.display =
-    "block";
+  results.style.display = "block";
 
 
   const correctOrder =
-    calibration.p <
-    calibration.mp &&
-
-    calibration.mp <
-    calibration.mf &&
-
-    calibration.mf <
-    calibration.f;
+    calibration.p < calibration.mp &&
+    calibration.mp < calibration.mf &&
+    calibration.mf < calibration.f;
 
 
   const gaps = [
-
-    calibration.mp -
-      calibration.p,
-
-    calibration.mf -
-      calibration.mp,
-
-    calibration.f -
-      calibration.mf
-
+    calibration.mp - calibration.p,
+    calibration.mf - calibration.mp,
+    calibration.f - calibration.mf
   ];
-
 
   const minimumGap =
     Math.min(...gaps);
@@ -1005,18 +978,26 @@ function finishCalibration() {
     minimumGap >= 2
   ) {
 
+    calibrationValid = true;
+
+    calculateBoundaries();
+
     validationMessage.className =
       "success";
 
     validationMessage.textContent =
-      "✅ Calibration berjaya! Aras p, mp, mf dan f dapat dibezakan.";
-
+      "✅ Calibration berjaya! Practice Mode sedia digunakan.";
 
     saveCalibration();
+
+    practiceCard.style.display =
+      "block";
 
   }
 
   else {
+
+    calibrationValid = false;
 
     validationMessage.className =
       "warning";
@@ -1024,14 +1005,200 @@ function finishCalibration() {
     validationMessage.textContent =
       "⚠️ Aras dinamik terlalu hampir atau tidak mengikut urutan. Sila calibration semula.";
 
+    practiceCard.style.display =
+      "none";
   }
-
 }
 
 
-/* ===================================
-   SAVE LOCAL STORAGE
-=================================== */
+/* CALCULATE CLASSIFICATION BOUNDARIES */
+
+function calculateBoundaries() {
+
+  boundaries.pMp =
+    (calibration.p + calibration.mp) / 2;
+
+  boundaries.mpMf =
+    (calibration.mp + calibration.mf) / 2;
+
+  boundaries.mfF =
+    (calibration.mf + calibration.f) / 2;
+
+
+  /*
+    Noise gate diletakkan di tengah
+    antara noise floor dan p.
+
+    Contoh:
+    noise = -51
+    p     = -44
+
+    activeGate ≈ -47.5
+  */
+
+  boundaries.activeGate =
+    (calibration.noise + calibration.p) / 2;
+}
+
+
+/* CLASSIFIER */
+
+function classifyDynamic(db) {
+
+  if (!calibrationValid) {
+    return "none";
+  }
+
+  if (db < boundaries.activeGate) {
+    return "silence";
+  }
+
+  if (db < boundaries.pMp) {
+    return "p";
+  }
+
+  if (db < boundaries.mpMf) {
+    return "mp";
+  }
+
+  if (db < boundaries.mfF) {
+    return "mf";
+  }
+
+  return "f";
+}
+
+
+/* PRACTICE MODE */
+
+function updatePracticeMode(db, peak) {
+
+  practiceDb.textContent =
+    db.toFixed(1) + " dB";
+
+  if (peak > 0.95) {
+
+    currentDynamic.textContent = "!";
+
+    currentDynamic.style.color =
+      "#ef5c72";
+
+    dynamicMeaning.textContent =
+      "INPUT TERLALU KUAT";
+
+    practiceFeedback.textContent =
+      "⚠️ Jauhkan sedikit daripada mikrofon";
+
+    practiceFeedback.style.background =
+      "#ffd6d6";
+
+    return;
+  }
+
+
+  const dynamic =
+    classifyDynamic(db);
+
+
+  if (dynamic === "silence") {
+
+    currentDynamic.textContent =
+      "—";
+
+    currentDynamic.style.color =
+      "#777";
+
+    dynamicMeaning.textContent =
+      "SENYAP";
+
+    practiceFeedback.textContent =
+      "🎵 Hasilkan bunyi untuk mula";
+
+    practiceFeedback.style.background =
+      "#eeeeee";
+
+    return;
+  }
+
+
+  if (dynamic === "p") {
+
+    currentDynamic.textContent =
+      "p";
+
+    currentDynamic.style.color =
+      "#4a9ee8";
+
+    dynamicMeaning.textContent =
+      "LEMBUT";
+
+    practiceFeedback.textContent =
+      "🔵 Dinamik p dikesan";
+
+    practiceFeedback.style.background =
+      "#e4f3ff";
+  }
+
+
+  else if (dynamic === "mp") {
+
+    currentDynamic.textContent =
+      "mp";
+
+    currentDynamic.style.color =
+      "#38ad7a";
+
+    dynamicMeaning.textContent =
+      "SEDERHANA LEMBUT";
+
+    practiceFeedback.textContent =
+      "🟢 Dinamik mp dikesan";
+
+    practiceFeedback.style.background =
+      "#dff8e8";
+  }
+
+
+  else if (dynamic === "mf") {
+
+    currentDynamic.textContent =
+      "mf";
+
+    currentDynamic.style.color =
+      "#e3a323";
+
+    dynamicMeaning.textContent =
+      "SEDERHANA KUAT";
+
+    practiceFeedback.textContent =
+      "🟡 Dinamik mf dikesan";
+
+    practiceFeedback.style.background =
+      "#fff3c4";
+  }
+
+
+  else if (dynamic === "f") {
+
+    currentDynamic.textContent =
+      "f";
+
+    currentDynamic.style.color =
+      "#ef5c72";
+
+    dynamicMeaning.textContent =
+      "KUAT";
+
+    practiceFeedback.textContent =
+      "🔴 Dinamik f dikesan";
+
+    practiceFeedback.style.background =
+      "#ffe0e5";
+  }
+}
+
+
+/* STORAGE */
 
 function saveCalibration() {
 
@@ -1039,26 +1206,54 @@ function saveCalibration() {
     "muzidynamicCalibration",
     JSON.stringify(calibration)
   );
-
 }
 
 
-/* ===================================
-   RESET
-=================================== */
+function loadCalibration() {
+
+  const saved =
+    localStorage.getItem(
+      "muzidynamicCalibration"
+    );
+
+  if (!saved) {
+    return;
+  }
+
+  try {
+
+    calibration =
+      JSON.parse(saved);
+
+    instruction.textContent =
+      "Calibration tersimpan ditemui. Aktifkan mikrofon untuk menggunakan Practice Mode.";
+
+    finishCalibration();
+
+  }
+
+  catch(error) {
+
+    console.error(
+      "Calibration data error",
+      error
+    );
+  }
+}
+
+
+/* RESET */
 
 resetButton.addEventListener(
   "click",
   resetCalibration
 );
 
-
 function resetCalibration() {
 
   localStorage.removeItem(
     "muzidynamicCalibration"
   );
-
 
   calibration = {
     noise: null,
@@ -1068,88 +1263,37 @@ function resetCalibration() {
     f: null
   };
 
+  calibrationValid = false;
 
   results.style.display =
     "none";
 
+  practiceCard.style.display =
+    "none";
 
   bigSymbol.textContent =
     "🎵";
 
-
   instruction.textContent =
     "Calibration telah direset. Tekan Mulakan Calibration untuk mencuba semula.";
 
-
   resetProgress();
-
 }
 
 
-/* ===================================
-   LOAD SAVED CALIBRATION
-=================================== */
-
-function loadCalibration() {
-
-  const saved =
-    localStorage.getItem(
-      "muzidynamicCalibration"
-    );
-
-
-  if (!saved) {
-    return;
-  }
-
-
-  try {
-
-    calibration =
-      JSON.parse(saved);
-
-
-    instruction.textContent =
-      "Calibration tersimpan ditemui. Anda boleh calibration semula jika keadaan berubah.";
-
-
-    finishCalibration();
-
-  }
-
-  catch (error) {
-
-    console.error(
-      "Calibration data error",
-      error
-    );
-
-  }
-
-}
-
-
-/* ===================================
-   UI HELPERS
-=================================== */
+/* UI HELPERS */
 
 function setActiveStep(id) {
 
   document
     .querySelectorAll(".step")
     .forEach(step => {
-
-      step.classList.remove(
-        "active"
-      );
-
+      step.classList.remove("active");
     });
-
 
   document
     .getElementById(id)
     .classList.add("active");
-
 }
 
 
@@ -1158,15 +1302,8 @@ function markDone(id) {
   const element =
     document.getElementById(id);
 
-
-  element.classList.remove(
-    "active"
-  );
-
-  element.classList.add(
-    "done"
-  );
-
+  element.classList.remove("active");
+  element.classList.add("done");
 }
 
 
@@ -1175,30 +1312,23 @@ function resetProgress() {
   document
     .querySelectorAll(".step")
     .forEach(step => {
-
       step.classList.remove(
         "active",
         "done"
       );
-
     });
-
 }
 
 
 function sleep(ms) {
 
   return new Promise(
-    resolve =>
-      setTimeout(resolve, ms)
+    resolve => setTimeout(resolve,ms)
   );
-
 }
 
 
-/* ===================================
-   START
-=================================== */
+/* START */
 
 loadCalibration();
 
