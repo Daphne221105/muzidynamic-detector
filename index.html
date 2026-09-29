@@ -1366,6 +1366,15 @@ function updatePracticeMode(db, peak) {
   const dynamic =
     classifyDynamic(db);
 
+  if (assessmentRunning) {
+  const assessmentCurrent = document.getElementById("assessmentCurrent");
+
+  if (assessmentCurrent) {
+    assessmentCurrent.textContent =
+      dynamic === "silence" ? "—" : dynamic;
+  }
+}
+
 
   if (dynamic === "silence") {
 
