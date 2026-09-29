@@ -16,20 +16,18 @@
       min-height: 100vh;
       font-family: Arial, sans-serif;
       background: linear-gradient(135deg, #eeeaff, #dcf7ff);
-      display: flex;
-      justify-content: center;
-      align-items: center;
       color: #29294a;
     }
 
-    .app {
-      width: 90%;
-      max-width: 800px;
-      background: white;
-      padding: 40px;
-      border-radius: 30px;
-      box-shadow: 0 12px 35px rgba(0,0,0,0.12);
+    .container {
+      width: 92%;
+      max-width: 900px;
+      margin: 35px auto;
+    }
+
+    .header {
       text-align: center;
+      margin-bottom: 25px;
     }
 
     h1 {
@@ -43,143 +41,366 @@
       color: #777;
     }
 
-    button {
-      margin-top: 30px;
-      background: #7357e8;
-      color: white;
-      border: none;
-      padding: 18px 30px;
-      border-radius: 18px;
-      font-size: 20px;
-      font-weight: bold;
-      cursor: pointer;
+    .card {
+      background: white;
+      padding: 32px;
+      border-radius: 28px;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.10);
+      text-align: center;
+      margin-bottom: 22px;
     }
 
-    #status {
-      margin-top: 25px;
+    button {
+      border: none;
+      padding: 16px 26px;
+      border-radius: 16px;
       font-size: 18px;
       font-weight: bold;
+      cursor: pointer;
+      margin: 6px;
     }
 
-    .meter-area {
-      margin-top: 35px;
+    .primary {
+      background: #7357e8;
+      color: white;
+    }
+
+    .secondary {
+      background: #eeeeff;
+      color: #5541b7;
+    }
+
+    button:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    #micStatus {
+      margin-top: 15px;
+      font-weight: bold;
     }
 
     .meter-background {
       width: 100%;
-      height: 48px;
+      height: 42px;
       background: #eeeeee;
-      border-radius: 30px;
+      border-radius: 25px;
       overflow: hidden;
+      margin-top: 25px;
     }
 
     #meter {
-      height: 100%;
       width: 0%;
+      height: 100%;
       background: linear-gradient(
         90deg,
-        #74b9ff 0%,
-        #55efc4 35%,
-        #ffe66d 65%,
-        #ff7675 100%
+        #74b9ff,
+        #55efc4,
+        #ffe66d,
+        #ff7675
       );
-      border-radius: 30px;
+      border-radius: 25px;
       transition: width 0.12s ease-out;
     }
 
     #dbValue {
-      font-size: 42px;
+      font-size: 38px;
       font-weight: bold;
-      margin-top: 18px;
+      margin-top: 12px;
     }
 
     #signalStatus {
       display: inline-block;
-      margin-top: 12px;
-      padding: 10px 18px;
-      border-radius: 15px;
+      margin-top: 8px;
+      padding: 9px 16px;
       background: #eeeeee;
-      font-size: 17px;
+      border-radius: 14px;
       font-weight: bold;
     }
 
-    .technical {
+    .calibration-title {
+      font-size: 26px;
+      font-weight: bold;
+    }
+
+    #instruction {
+      margin-top: 15px;
+      font-size: 19px;
+      line-height: 1.5;
+    }
+
+    #bigSymbol {
+      font-size: 85px;
+      font-weight: bold;
+      margin: 18px 0;
+      min-height: 100px;
+    }
+
+    #countdown {
+      font-size: 34px;
+      font-weight: bold;
+      margin: 15px 0;
+      color: #7357e8;
+    }
+
+    .progress {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
       margin-top: 25px;
-      padding: 15px;
+    }
+
+    .step {
+      flex: 1;
+      padding: 12px 5px;
+      border-radius: 12px;
+      background: #eeeeee;
+      font-weight: bold;
+    }
+
+    .step.done {
+      background: #dff8e8;
+    }
+
+    .step.active {
+      outline: 3px solid #7357e8;
+    }
+
+    .p {
+      color: #4a9ee8;
+    }
+
+    .mp {
+      color: #38ad7a;
+    }
+
+    .mf {
+      color: #e3a323;
+    }
+
+    .f {
+      color: #ef5c72;
+    }
+
+    #results {
+      display: none;
+      margin-top: 25px;
+      text-align: left;
+    }
+
+    .result-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 15px;
+      margin: 7px 0;
       background: #f7f7fb;
+      border-radius: 12px;
+      font-size: 18px;
+    }
+
+    .success {
+      margin-top: 20px;
+      padding: 15px;
+      background: #dff8e8;
       border-radius: 15px;
-      font-size: 14px;
-      color: #666;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .warning {
+      margin-top: 20px;
+      padding: 15px;
+      background: #fff0cf;
+      border-radius: 15px;
+      font-weight: bold;
+      text-align: center;
     }
 
     .note {
-      margin-top: 25px;
+      margin-top: 20px;
       font-size: 13px;
       color: #888;
+      line-height: 1.5;
     }
 
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 30px;
+      }
+
+      .card {
+        padding: 22px;
+      }
+
+      #bigSymbol {
+        font-size: 65px;
+      }
+    }
   </style>
 </head>
 
 <body>
 
-  <div class="app">
+<div class="container">
 
+  <div class="header">
     <h1>🎵 MuziDynamic Detector</h1>
 
     <div class="tagline">
       Dengar • Nyanyi • Ukur • Kuasai
     </div>
+  </div>
 
-    <button id="startButton">
+
+  <!-- MICROPHONE CARD -->
+
+  <div class="card">
+
+    <button
+      id="micButton"
+      class="primary">
       🎤 Aktifkan Mikrofon
     </button>
 
-    <div id="status">
+    <div id="micStatus">
       Mikrofon belum diaktifkan.
     </div>
 
-    <div class="meter-area">
 
-      <div class="meter-background">
-        <div id="meter"></div>
-      </div>
-
-      <div id="dbValue">
-        -- dB
-      </div>
-
-      <div id="signalStatus">
-        Menunggu input
-      </div>
-
+    <div class="meter-background">
+      <div id="meter"></div>
     </div>
 
-    <div class="technical">
-      RMS:
-      <span id="rmsValue">--</span>
-
-      &nbsp; • &nbsp;
-
-      Peak:
-      <span id="peakValue">--</span>
+    <div id="dbValue">
+      -- dB
     </div>
 
-    <div class="note">
-      Bacaan dB ialah aras signal relatif mikrofon,
-      bukan ukuran dB SPL mutlak.
+    <div id="signalStatus">
+      Menunggu input
     </div>
 
   </div>
 
 
+  <!-- CALIBRATION CARD -->
+
+  <div class="card">
+
+    <div class="calibration-title">
+      🎚️ Calibration Mode
+    </div>
+
+    <div id="instruction">
+      Aktifkan mikrofon dahulu.
+      Kemudian kita akan mengukur bunyi persekitaran
+      dan empat aras dinamik.
+    </div>
+
+    <div id="bigSymbol">
+      🎵
+    </div>
+
+    <div id="countdown"></div>
+
+
+    <button
+      id="calibrateButton"
+      class="primary"
+      disabled>
+      Mulakan Calibration
+    </button>
+
+
+    <button
+      id="resetButton"
+      class="secondary">
+      Reset Calibration
+    </button>
+
+
+    <div class="progress">
+
+      <div class="step" id="stepNoise">
+        🤫 Senyap
+      </div>
+
+      <div class="step" id="stepP">
+        p
+      </div>
+
+      <div class="step" id="stepMP">
+        mp
+      </div>
+
+      <div class="step" id="stepMF">
+        mf
+      </div>
+
+      <div class="step" id="stepF">
+        f
+      </div>
+
+    </div>
+
+
+    <div id="results">
+
+      <h3>
+        Keputusan Calibration
+      </h3>
+
+      <div class="result-row">
+        <span>🤫 Noise Floor</span>
+        <strong id="resultNoise">--</strong>
+      </div>
+
+      <div class="result-row">
+        <span class="p">p • Lembut</span>
+        <strong id="resultP">--</strong>
+      </div>
+
+      <div class="result-row">
+        <span class="mp">mp • Sederhana Lembut</span>
+        <strong id="resultMP">--</strong>
+      </div>
+
+      <div class="result-row">
+        <span class="mf">mf • Sederhana Kuat</span>
+        <strong id="resultMF">--</strong>
+      </div>
+
+      <div class="result-row">
+        <span class="f">f • Kuat</span>
+        <strong id="resultF">--</strong>
+      </div>
+
+      <div id="validationMessage"></div>
+
+    </div>
+
+
+    <div class="note">
+      Calibration adalah relatif kepada mikrofon,
+      jarak dan keadaan persekitaran semasa.
+      Kekalkan kedudukan peranti semasa penggunaan.
+    </div>
+
+  </div>
+
+</div>
+
+
 <script>
 
-const startButton =
-  document.getElementById("startButton");
+/* ===================================
+   ELEMENTS
+=================================== */
 
-const statusText =
-  document.getElementById("status");
+const micButton =
+  document.getElementById("micButton");
+
+const micStatus =
+  document.getElementById("micStatus");
 
 const meter =
   document.getElementById("meter");
@@ -190,12 +411,31 @@ const dbValue =
 const signalStatus =
   document.getElementById("signalStatus");
 
-const rmsValue =
-  document.getElementById("rmsValue");
+const calibrateButton =
+  document.getElementById("calibrateButton");
 
-const peakValue =
-  document.getElementById("peakValue");
+const resetButton =
+  document.getElementById("resetButton");
 
+const instruction =
+  document.getElementById("instruction");
+
+const bigSymbol =
+  document.getElementById("bigSymbol");
+
+const countdown =
+  document.getElementById("countdown");
+
+const results =
+  document.getElementById("results");
+
+const validationMessage =
+  document.getElementById("validationMessage");
+
+
+/* ===================================
+   AUDIO VARIABLES
+=================================== */
 
 let audioContext;
 let analyser;
@@ -203,12 +443,31 @@ let dataArray;
 
 let smoothedDb = -80;
 
+let currentRawDb = -80;
 
-/* =========================
-   AKTIFKAN MIKROFON
-========================= */
+let microphoneReady = false;
 
-startButton.addEventListener(
+let calibrationRunning = false;
+
+
+/* ===================================
+   CALIBRATION DATA
+=================================== */
+
+let calibration = {
+  noise: null,
+  p: null,
+  mp: null,
+  mf: null,
+  f: null
+};
+
+
+/* ===================================
+   MICROPHONE
+=================================== */
+
+micButton.addEventListener(
   "click",
   startMicrophone
 );
@@ -218,7 +477,7 @@ async function startMicrophone() {
 
   try {
 
-    statusText.textContent =
+    micStatus.textContent =
       "Meminta kebenaran mikrofon...";
 
 
@@ -251,7 +510,6 @@ async function startMicrophone() {
     analyser =
       audioContext.createAnalyser();
 
-
     analyser.fftSize = 2048;
 
 
@@ -259,14 +517,22 @@ async function startMicrophone() {
 
 
     dataArray =
-      new Float32Array(analyser.fftSize);
+      new Float32Array(
+        analyser.fftSize
+      );
 
 
-    statusText.textContent =
+    microphoneReady = true;
+
+
+    micStatus.textContent =
       "✅ Mikrofon aktif";
 
-    startButton.style.display =
+    micButton.style.display =
       "none";
+
+    calibrateButton.disabled =
+      false;
 
 
     updateAudio();
@@ -277,7 +543,7 @@ async function startMicrophone() {
 
     console.error(error);
 
-    statusText.textContent =
+    micStatus.textContent =
       "❌ Mikrofon tidak dapat diakses.";
 
   }
@@ -285,9 +551,9 @@ async function startMicrophone() {
 }
 
 
-/* =========================
-   ANALISIS AUDIO
-========================= */
+/* ===================================
+   AUDIO ENGINE
+=================================== */
 
 function updateAudio() {
 
@@ -309,14 +575,11 @@ function updateAudio() {
     const sample =
       dataArray[i];
 
-
     sumSquares +=
       sample * sample;
 
-
     const absolute =
       Math.abs(sample);
-
 
     if (absolute > peak) {
       peak = absolute;
@@ -325,8 +588,6 @@ function updateAudio() {
   }
 
 
-  /* RMS */
-
   const rms =
     Math.sqrt(
       sumSquares /
@@ -334,38 +595,29 @@ function updateAudio() {
     );
 
 
-  /* RMS → relative dB */
-
-  let currentDb;
-
   if (rms > 0.00001) {
 
-    currentDb =
+    currentRawDb =
       20 * Math.log10(rms);
 
   } else {
 
-    currentDb = -100;
+    currentRawDb = -100;
 
   }
 
 
-  /* Hadkan bacaan */
-
-  currentDb =
-    Math.max(-80,
-      Math.min(0, currentDb)
+  currentRawDb =
+    Math.max(
+      -80,
+      Math.min(0, currentRawDb)
     );
 
 
-  /* Smoothing */
-
   smoothedDb =
     (smoothedDb * 0.82) +
-    (currentDb * 0.18);
+    (currentRawDb * 0.18);
 
-
-  /* Tukar -80...0 kepada 0...100 */
 
   let meterPercent =
     ((smoothedDb + 80) / 80)
@@ -388,19 +640,6 @@ function updateAudio() {
     + " dB";
 
 
-  rmsValue.textContent =
-    rms.toFixed(4);
-
-
-  peakValue.textContent =
-    peak.toFixed(3);
-
-
-  /* =====================
-     STATUS SIGNAL
-  ===================== */
-
-
   if (smoothedDb < -55) {
 
     signalStatus.textContent =
@@ -411,7 +650,6 @@ function updateAudio() {
 
   }
 
-
   else if (peak > 0.95) {
 
     signalStatus.textContent =
@@ -421,7 +659,6 @@ function updateAudio() {
       "#ffd6d6";
 
   }
-
 
   else {
 
@@ -439,6 +676,531 @@ function updateAudio() {
   );
 
 }
+
+
+/* ===================================
+   CALIBRATION
+=================================== */
+
+calibrateButton.addEventListener(
+  "click",
+  runCalibration
+);
+
+
+async function runCalibration() {
+
+  if (!microphoneReady ||
+      calibrationRunning) {
+    return;
+  }
+
+
+  calibrationRunning = true;
+
+  calibrateButton.disabled = true;
+
+  resetProgress();
+
+  results.style.display =
+    "none";
+
+
+  /*
+    NOISE FLOOR
+  */
+
+  setActiveStep("stepNoise");
+
+  bigSymbol.textContent =
+    "🤫";
+
+  instruction.textContent =
+    "SENYAP. Jangan bercakap atau memainkan alat muzik.";
+
+  await preparationCountdown();
+
+  calibration.noise =
+    await collectSample(3000);
+
+  markDone("stepNoise");
+
+
+  /*
+    P
+  */
+
+  setActiveStep("stepP");
+
+  bigSymbol.innerHTML =
+    '<span class="p">p</span>';
+
+  instruction.textContent =
+    "Hasilkan bunyi LEMBUT (p) secara berterusan.";
+
+  await preparationCountdown();
+
+  calibration.p =
+    await collectSample(3000);
+
+  markDone("stepP");
+
+
+  /*
+    MP
+  */
+
+  setActiveStep("stepMP");
+
+  bigSymbol.innerHTML =
+    '<span class="mp">mp</span>';
+
+  instruction.textContent =
+    "Hasilkan bunyi SEDERHANA LEMBUT (mp) secara berterusan.";
+
+  await preparationCountdown();
+
+  calibration.mp =
+    await collectSample(3000);
+
+  markDone("stepMP");
+
+
+  /*
+    MF
+  */
+
+  setActiveStep("stepMF");
+
+  bigSymbol.innerHTML =
+    '<span class="mf">mf</span>';
+
+  instruction.textContent =
+    "Hasilkan bunyi SEDERHANA KUAT (mf) secara berterusan.";
+
+  await preparationCountdown();
+
+  calibration.mf =
+    await collectSample(3000);
+
+  markDone("stepMF");
+
+
+  /*
+    F
+  */
+
+  setActiveStep("stepF");
+
+  bigSymbol.innerHTML =
+    '<span class="f">f</span>';
+
+  instruction.textContent =
+    "Hasilkan bunyi KUAT (f) secara berterusan.";
+
+  await preparationCountdown();
+
+  calibration.f =
+    await collectSample(3000);
+
+  markDone("stepF");
+
+
+  countdown.textContent =
+    "";
+
+  bigSymbol.textContent =
+    "✅";
+
+  instruction.textContent =
+    "Calibration selesai!";
+
+
+  finishCalibration();
+
+
+  calibrationRunning =
+    false;
+
+  calibrateButton.disabled =
+    false;
+
+}
+
+
+/* ===================================
+   COUNTDOWN
+=================================== */
+
+async function preparationCountdown() {
+
+  for (
+    let i = 3;
+    i >= 1;
+    i--
+  ) {
+
+    countdown.textContent =
+      "Bersedia... " + i;
+
+    await sleep(700);
+
+  }
+
+  countdown.textContent =
+    "🎤 Dengar...";
+
+}
+
+
+/* ===================================
+   COLLECT SAMPLE
+=================================== */
+
+async function collectSample(
+  duration
+) {
+
+  const samples = [];
+
+  const start =
+    performance.now();
+
+
+  while (
+    performance.now() - start
+    < duration
+  ) {
+
+    samples.push(
+      currentRawDb
+    );
+
+    await sleep(50);
+
+  }
+
+
+  /*
+    Susun data dan ambil median.
+    Median lebih tahan terhadap
+    bunyi tiba-tiba.
+  */
+
+  samples.sort(
+    (a, b) => a - b
+  );
+
+
+  const middle =
+    Math.floor(
+      samples.length / 2
+    );
+
+
+  let median;
+
+
+  if (
+    samples.length % 2 === 0
+  ) {
+
+    median =
+      (
+        samples[middle - 1] +
+        samples[middle]
+      ) / 2;
+
+  }
+
+  else {
+
+    median =
+      samples[middle];
+
+  }
+
+
+  return median;
+
+}
+
+
+/* ===================================
+   FINISH + VALIDATION
+=================================== */
+
+function finishCalibration() {
+
+  document.getElementById(
+    "resultNoise"
+  ).textContent =
+    calibration.noise.toFixed(1)
+    + " dB";
+
+
+  document.getElementById(
+    "resultP"
+  ).textContent =
+    calibration.p.toFixed(1)
+    + " dB";
+
+
+  document.getElementById(
+    "resultMP"
+  ).textContent =
+    calibration.mp.toFixed(1)
+    + " dB";
+
+
+  document.getElementById(
+    "resultMF"
+  ).textContent =
+    calibration.mf.toFixed(1)
+    + " dB";
+
+
+  document.getElementById(
+    "resultF"
+  ).textContent =
+    calibration.f.toFixed(1)
+    + " dB";
+
+
+  results.style.display =
+    "block";
+
+
+  const correctOrder =
+    calibration.p <
+    calibration.mp &&
+
+    calibration.mp <
+    calibration.mf &&
+
+    calibration.mf <
+    calibration.f;
+
+
+  const gaps = [
+
+    calibration.mp -
+      calibration.p,
+
+    calibration.mf -
+      calibration.mp,
+
+    calibration.f -
+      calibration.mf
+
+  ];
+
+
+  const minimumGap =
+    Math.min(...gaps);
+
+
+  if (
+    correctOrder &&
+    minimumGap >= 2
+  ) {
+
+    validationMessage.className =
+      "success";
+
+    validationMessage.textContent =
+      "✅ Calibration berjaya! Aras p, mp, mf dan f dapat dibezakan.";
+
+
+    saveCalibration();
+
+  }
+
+  else {
+
+    validationMessage.className =
+      "warning";
+
+    validationMessage.textContent =
+      "⚠️ Aras dinamik terlalu hampir atau tidak mengikut urutan. Sila calibration semula.";
+
+  }
+
+}
+
+
+/* ===================================
+   SAVE LOCAL STORAGE
+=================================== */
+
+function saveCalibration() {
+
+  localStorage.setItem(
+    "muzidynamicCalibration",
+    JSON.stringify(calibration)
+  );
+
+}
+
+
+/* ===================================
+   RESET
+=================================== */
+
+resetButton.addEventListener(
+  "click",
+  resetCalibration
+);
+
+
+function resetCalibration() {
+
+  localStorage.removeItem(
+    "muzidynamicCalibration"
+  );
+
+
+  calibration = {
+    noise: null,
+    p: null,
+    mp: null,
+    mf: null,
+    f: null
+  };
+
+
+  results.style.display =
+    "none";
+
+
+  bigSymbol.textContent =
+    "🎵";
+
+
+  instruction.textContent =
+    "Calibration telah direset. Tekan Mulakan Calibration untuk mencuba semula.";
+
+
+  resetProgress();
+
+}
+
+
+/* ===================================
+   LOAD SAVED CALIBRATION
+=================================== */
+
+function loadCalibration() {
+
+  const saved =
+    localStorage.getItem(
+      "muzidynamicCalibration"
+    );
+
+
+  if (!saved) {
+    return;
+  }
+
+
+  try {
+
+    calibration =
+      JSON.parse(saved);
+
+
+    instruction.textContent =
+      "Calibration tersimpan ditemui. Anda boleh calibration semula jika keadaan berubah.";
+
+
+    finishCalibration();
+
+  }
+
+  catch (error) {
+
+    console.error(
+      "Calibration data error",
+      error
+    );
+
+  }
+
+}
+
+
+/* ===================================
+   UI HELPERS
+=================================== */
+
+function setActiveStep(id) {
+
+  document
+    .querySelectorAll(".step")
+    .forEach(step => {
+
+      step.classList.remove(
+        "active"
+      );
+
+    });
+
+
+  document
+    .getElementById(id)
+    .classList.add("active");
+
+}
+
+
+function markDone(id) {
+
+  const element =
+    document.getElementById(id);
+
+
+  element.classList.remove(
+    "active"
+  );
+
+  element.classList.add(
+    "done"
+  );
+
+}
+
+
+function resetProgress() {
+
+  document
+    .querySelectorAll(".step")
+    .forEach(step => {
+
+      step.classList.remove(
+        "active",
+        "done"
+      );
+
+    });
+
+}
+
+
+function sleep(ms) {
+
+  return new Promise(
+    resolve =>
+      setTimeout(resolve, ms)
+  );
+
+}
+
+
+/* ===================================
+   START
+=================================== */
+
+loadCalibration();
 
 </script>
 
