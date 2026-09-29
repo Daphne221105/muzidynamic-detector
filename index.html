@@ -1588,33 +1588,27 @@ loadCalibration();
 
   const assessmentDynamics = ["p", "mp", "mf", "f"];
 
-let assessmentTarget = "";
-let assessmentRunning = false;
-let assessmentStartTime = 0;
-let assessmentCorrectTime = 0;
-let assessmentTotalTime = 0;
-  document.querySelectorAll(".target-btn").forEach(button => {
-    button.addEventListener("click", function () {
+  // ===== PILIH TARGET ASSESSMENT =====
+document.querySelectorAll(".target-btn").forEach(button => {
+  button.addEventListener("click", function () {
 
-        // Ambil dynamic yang dipilih
-        assessmentTarget = this.dataset.target;
+    // Ambil target daripada button yang ditekan
+    assessmentTarget = this.dataset.target;
 
-        // Buang pilihan lama
-        document.querySelectorAll(".target-btn").forEach(btn => {
-            btn.classList.remove("selected");
-        });
-
-        // Tandakan button yang dipilih
-        this.classList.add("selected");
-
-        // Aktifkan button mula pentaksiran
-        const startButton = document.getElementById("startAssessment");
-        if (startButton) {
-            startButton.disabled = false;
-        }
-
-        console.log("Target dipilih:", assessmentTarget);
+    // Buang highlight daripada semua button
+    document.querySelectorAll(".target-btn").forEach(btn => {
+      btn.classList.remove("selected");
     });
+
+    // Highlight button yang dipilih
+    this.classList.add("selected");
+
+    // Aktifkan butang mula
+    const startButton = document.getElementById("startAssessment");
+    startButton.disabled = false;
+
+    console.log("Target dipilih:", assessmentTarget);
+  });
 });
 
   function pilihTargetAssessment() {
