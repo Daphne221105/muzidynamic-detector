@@ -1638,7 +1638,9 @@ document.querySelectorAll(".target-btn").forEach(button => {
 }
 function mulaAssessment() { 
 
-  alert("MULA PENTAKSIRAN BERFUNGSI!");
+document.getElementById("assessmentReady").style.display = "none";
+document.getElementById("assessmentLive").style.display = "block";
+document.getElementById("assessmentTarget").textContent = assessmentTarget;
   
   assessmentRunning = true;
   assessmentStartTime = Date.now();
