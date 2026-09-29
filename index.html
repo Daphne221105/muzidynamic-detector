@@ -1638,7 +1638,34 @@ document.querySelectorAll(".target-btn").forEach(button => {
 }
 function mulaAssessment() {
 
-  alert("MULA PENTAKSIRAN BERFUNGSI!");
+  assessmentRunning = true;
+  assessmentStartTime = Date.now();
+  assessmentCorrectTime = 0;
+  assessmentTotalTime = 0;
+
+  // Paparkan panel pentaksiran
+  const assessmentLive = document.getElementById("assessmentLive");
+  if (assessmentLive) {
+    assessmentLive.style.display = "block";
+  }
+
+  // Tukar arahan/status
+  const assessmentReady = document.getElementById("assessmentReady");
+  if (assessmentReady) {
+    assessmentReady.style.display = "none";
+  }
+
+  // Paparkan target yang dipilih
+  const targetDisplay = document.getElementById("assessmentTarget");
+  if (targetDisplay) {
+    targetDisplay.textContent = assessmentTarget;
+  }
+
+  console.log("Assessment bermula");
+  console.log("Target:", assessmentTarget);
+}
+
+  
 
   assessmentRunning = true;
   assessmentStartTime = Date.now();
