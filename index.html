@@ -1636,14 +1636,57 @@ document.querySelectorAll(".target-btn").forEach(button => {
 
   return assessmentTarget;
 }
-  function mulaAssessment() {
+ function mulaAssessment() {
+
+  if (!assessmentTarget) {
+    alert("Sila pilih target dynamic dahulu.");
+    return;
+  }
 
   assessmentRunning = true;
   assessmentStartTime = Date.now();
   assessmentCorrectTime = 0;
   assessmentTotalTime = 0;
 
-    paparkanTargetAssessment();
+  // Sembunyikan arahan awal
+  document.getElementById("assessmentReady").style.display = "none";
+
+  // Paparkan panel pentaksiran
+  document.getElementById("assessmentLive").style.display = "block";
+
+  // Paparkan target yang dipilih
+  document.getElementById("assessmentTarget").textContent = assessmentTarget;
+
+  // Status awal bacaan
+  document.getElementById("assessmentCurrent").textContent = "🎤 Mula hasilkan bunyi...";
+
+  console.log("Assessment bermula");
+  console.log("Target:", assessmentTarget);
+}
+
+  // Pastikan target sudah dipilih
+  if (!assessmentTarget) {
+    alert("Sila pilih target dynamic dahulu.");
+    return;
+  }
+
+  assessmentRunning = true;
+  assessmentStartTime = Date.now();
+  assessmentCorrectTime = 0;
+  assessmentTotalTime = 0;
+
+  // Paparkan target
+  paparkanTargetAssessment();
+
+  // Tukar arahan pada skrin
+  const instruction = document.getElementById("assessmentInstruction");
+
+  if (instruction) {
+    instruction.innerHTML =
+      "🎤 Hasilkan bunyi <strong>" +
+      assessmentTarget +
+      "</strong> sekarang!";
+  }
 
   console.log("Assessment bermula");
   console.log("Target:", assessmentTarget);
