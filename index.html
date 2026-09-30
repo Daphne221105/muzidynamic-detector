@@ -886,12 +886,12 @@ async function startMicrophone() {
 
   catch(error) {
 
-    console.error(error);
+  console.error(error);
 
-    micStatus.textContent =
-      "❌ Mikrofon tidak dapat diakses.";
+  micStatus.textContent =
+    "❌ " + error.name + ": " + error.message;
 
-  }
+}
 }
 
 
