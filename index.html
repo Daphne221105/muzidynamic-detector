@@ -2477,5 +2477,19 @@ setInterval(kemasKiniMeterCandy, 100);
 
 </script>
 
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function () {
+    navigator.serviceWorker.register("./service-worker.js")
+      .then(function () {
+        console.log("MuziDynamic sedia untuk mod luar talian.");
+      })
+      .catch(function (error) {
+        console.log("Service worker gagal didaftarkan:", error);
+      });
+  });
+}
+</script>
+
 </body>
 </html>
