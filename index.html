@@ -1759,35 +1759,6 @@ document.getElementById("assessmentTarget").textContent = assessmentTarget;
   console.log("Assessment bermula");
   console.log("Target:", assessmentTarget);
 }
-
-  function paparkanTargetAssessment() {
-
-  // Pastikan target sudah dipilih
-  if (!assessmentTarget) {
-    alert("Sila pilih target dynamic dahulu.");
-    return;
-  }
-
-  assessmentRunning = true;
-  assessmentStartTime = Date.now();
-  assessmentCorrectTime = 0;
-  assessmentTotalTime = 0;
-
-  // Paparkan target
-
-  // Tukar arahan pada skrin
-  const instruction = document.getElementById("assessmentInstruction");
-
-  if (instruction) {
-    instruction.innerHTML =
-      "🎤 Hasilkan bunyi <strong>" +
-      assessmentTarget +
-      "</strong> sekarang!";
-  }
-
-  console.log("Assessment bermula");
-  console.log("Target:", assessmentTarget);
-}
   
 </script>
 
