@@ -1613,6 +1613,12 @@ loadCalibration();
 
   const assessmentDynamics = ["p", "mp", "mf", "f"];
 
+  let assessmentTarget = "";
+let assessmentRunning = false;
+let assessmentStartTime = 0;
+let assessmentCorrectTime = 0;
+let assessmentTotalTime = 0;
+
   // ===== PILIH TARGET ASSESSMENT =====
 document.querySelectorAll(".target-btn").forEach(button => {
   button.addEventListener("click", function () {
