@@ -510,6 +510,7 @@ button:disabled {
         🤫 Senyap
       </div>
 
+      <div class="step" id="stepPP">pp</div>
       <div class="step" id="stepP">p</div>
       <div class="step" id="stepMP">mp</div>
       <div class="step" id="stepMF">mf</div>
@@ -526,6 +527,11 @@ button:disabled {
         <strong id="resultNoise">--</strong>
       </div>
 
+      <div class="result-row">
+        <span class="pp">pp • Sangat Lembut</span>
+        <strong id="resultPP">--</strong>
+      </div>
+      
       <div class="result-row">
         <span class="p">p • Lembut</span>
         <strong id="resultP">--</strong>
@@ -622,7 +628,7 @@ button:disabled {
     <input
       type="text"
       id="studentName"
-      placeholder="Contoh: Aisyah / M01">
+      placeholder="Contoh: Daphne / M01">
 
     <label>Kelas</label>
     <input
@@ -633,10 +639,12 @@ button:disabled {
     <label>Target Dynamic</label>
 
     <div class="target-buttons">
+      <button class="target-btn pp-target" data-target="pp">pp</button>
       <button class="target-btn p-target" data-target="p">p</button>
       <button class="target-btn mp-target" data-target="mp">mp</button>
       <button class="target-btn mf-target" data-target="mf">mf</button>
       <button class="target-btn f-target" data-target="f">f</button>
+      <button class="target-btn ff-target" data-target="ff">ff</button>
     </div>
 
     <label>Tempoh Pentaksiran</label>
@@ -808,19 +816,23 @@ let calibrationValid = false;
 
 let calibration = {
   noise: null,
+  pp: null,
   p: null,
   mp: null,
   mf: null,
-  f: null
+  f: null,
+  ff: null
 };
 
 
 /* CLASSIFICATION BOUNDARIES */
 
 let boundaries = {
+  ppP: null,
   pMp: null,
   mpMf: null,
   mfF: null,
+  fFf: null,
   activeGate: null
 };
 
@@ -1054,8 +1066,24 @@ async function runCalibration() {
 
   markDone("stepNoise");
 
+// ===== PP =====
+setActiveStep("stepPP");
 
-  setActiveStep("stepP");
+bigSymbol.innerHTML =
+  '<span class="pp">pp</span>';
+
+instruction.textContent =
+  "Hasilkan bunyi SANGAT LEMBUT (pp) secara berterusan.";
+
+await preparationCountdown();
+
+calibration.pp =
+  await collectSample(3000);
+
+markDone("stepPP");
+
+// ===== P =====
+setActiveStep("stepP");
 
   bigSymbol.innerHTML =
     '<span class="p">p</span>';
@@ -1202,6 +1230,11 @@ function finishCalibration() {
     calibration.noise.toFixed(1) + " dB";
 
   document.getElementById(
+  "resultPP"
+).textContent =
+  calibration.pp.toFixed(1) + " dB";
+
+  document.getElementById(
     "resultP"
   ).textContent =
     calibration.p.toFixed(1) + " dB";
@@ -1282,14 +1315,20 @@ function finishCalibration() {
 
 function calculateBoundaries() {
 
-  boundaries.pMp =
-    (calibration.p + calibration.mp) / 2;
+  boundaries.ppP =
+  (calibration.pp + calibration.p) / 2;
 
-  boundaries.mpMf =
-    (calibration.mp + calibration.mf) / 2;
+boundaries.pMp =
+  (calibration.p + calibration.mp) / 2;
 
-  boundaries.mfF =
-    (calibration.mf + calibration.f) / 2;
+boundaries.mpMf =
+  (calibration.mp + calibration.mf) / 2;
+
+boundaries.mfF =
+  (calibration.mf + calibration.f) / 2;
+
+boundaries.fFf =
+  (calibration.f + calibration.ff) / 2;
 
 
   /*
@@ -1320,20 +1359,27 @@ function classifyDynamic(db) {
     return "silence";
   }
 
-  if (db < boundaries.pMp) {
-    return "p";
-  }
+  if (db < boundaries.ppP) {
+  return "pp";
+}
 
-  if (db < boundaries.mpMf) {
-    return "mp";
-  }
+if (db < boundaries.pMp) {
+  return "p";
+}
 
-  if (db < boundaries.mfF) {
-    return "mf";
-  }
+if (db < boundaries.mpMf) {
+  return "mp";
+}
 
+if (db < boundaries.mfF) {
+  return "mf";
+}
+
+if (db < boundaries.fFf) {
   return "f";
 }
+
+return "ff";
 
 
 /* PRACTICE MODE */
@@ -1397,7 +1443,25 @@ function updatePracticeMode(db, peak) {
   }
 
 
-  if (dynamic === "p") {
+  if (dynamic === "pp") {
+
+  currentDynamic.textContent =
+    "pp";
+
+  currentDynamic.style.color =
+    "#7c6ee6";
+
+  dynamicMeaning.textContent =
+    "SANGAT LEMBUT";
+
+  practiceFeedback.textContent =
+    "🟣 Dinamik pp dikesan";
+
+  practiceFeedback.style.background =
+    "#eeeaff";
+}
+
+else if (dynamic === "p") {
 
     currentDynamic.textContent =
       "p";
@@ -1471,6 +1535,24 @@ function updatePracticeMode(db, peak) {
     practiceFeedback.style.background =
       "#ffe0e5";
   }
+
+  else if (dynamic === "ff") {
+
+  currentDynamic.textContent =
+    "ff";
+
+  currentDynamic.style.color =
+    "#d92d4f";
+
+  dynamicMeaning.textContent =
+    "SANGAT KUAT";
+
+  practiceFeedback.textContent =
+    "🔴 Dinamik ff dikesan";
+
+  practiceFeedback.style.background =
+    "#ffd6de";
+}
 }
 
 
@@ -1498,8 +1580,17 @@ function loadCalibration() {
 
   try {
 
-    calibration =
-      JSON.parse(saved);
+    const savedCalibration = JSON.parse(saved);
+
+calibration = {
+  noise: savedCalibration.noise ?? null,
+  pp: savedCalibration.pp ?? null,
+  p: savedCalibration.p ?? null,
+  mp: savedCalibration.mp ?? null,
+  mf: savedCalibration.mf ?? null,
+  f: savedCalibration.f ?? null,
+  ff: savedCalibration.ff ?? null
+};
 
     instruction.textContent =
       "Calibration tersimpan ditemui. Aktifkan mikrofon untuk menggunakan Practice Mode.";
@@ -1532,12 +1623,14 @@ function resetCalibration() {
   );
 
   calibration = {
-    noise: null,
-    p: null,
-    mp: null,
-    mf: null,
-    f: null
-  };
+  noise: null,
+  pp: null,
+  p: null,
+  mp: null,
+  mf: null,
+  f: null,
+  ff: null
+};
 
   calibrationValid = false;
 
@@ -1611,7 +1704,7 @@ loadCalibration();
 
 /* ===== ASSESSMENT MODE ===== */
 
-  const assessmentDynamics = ["p", "mp", "mf", "f"];
+  const assessmentDynamics = ["pp", "p", "mp", "mf", "f", "ff"];
 
   let assessmentTarget = "";
 let assessmentRunning = false;
@@ -1662,7 +1755,6 @@ document.getElementById("assessmentTarget").textContent = assessmentTarget;
   assessmentCorrectTime = 0;
   assessmentTotalTime = 0;
 
-  paparkanTargetAssessment();
 
   console.log("Assessment bermula");
   console.log("Target:", assessmentTarget);
@@ -1682,7 +1774,6 @@ document.getElementById("assessmentTarget").textContent = assessmentTarget;
   assessmentTotalTime = 0;
 
   // Paparkan target
-  paparkanTargetAssessment();
 
   // Tukar arahan pada skrin
   const instruction = document.getElementById("assessmentInstruction");
@@ -1697,13 +1788,7 @@ document.getElementById("assessmentTarget").textContent = assessmentTarget;
   console.log("Assessment bermula");
   console.log("Target:", assessmentTarget);
 }
-  function paparkanTargetAssessment() {
-  const targetElement = document.getElementById("targetDynamic");
-
-  if (targetElement) {
-    targetElement.textContent = assessmentTarget;
-  }
-}
+  
 </script>
 
 </body>
