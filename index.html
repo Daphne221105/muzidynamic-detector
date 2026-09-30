@@ -1699,6 +1699,12 @@ function sleep(ms) {
 
 /* START */
 
+let assessmentTarget = "";
+let assessmentRunning = false;
+let assessmentStartTime = 0;
+let assessmentCorrectTime = 0;
+let assessmentTotalTime = 0;
+  
 loadCalibration();
 
 
@@ -1706,11 +1712,6 @@ loadCalibration();
 
   const assessmentDynamics = ["pp", "p", "mp", "mf", "f", "ff"];
 
-  let assessmentTarget = "";
-let assessmentRunning = false;
-let assessmentStartTime = 0;
-let assessmentCorrectTime = 0;
-let assessmentTotalTime = 0;
 
   // ===== PILIH TARGET ASSESSMENT =====
 document.querySelectorAll(".target-btn").forEach(button => {
