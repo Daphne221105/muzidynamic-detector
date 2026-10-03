@@ -1036,6 +1036,159 @@ body::before {
   .header::after{font-size:12px !important;padding:8px 14px !important}
 }
 
+
+/* ===== DYNAMIC PLINKO CHALLENGE ===== */
+.plinko-challenge{position:relative;overflow:hidden;text-align:center;padding:24px !important;border:3px solid #ff9dbe !important;box-shadow:0 10px 28px rgba(187,83,139,.16)}
+.plinko-title{font-size:27px !important;margin-bottom:4px}.plinko-subtitle{font-weight:800;color:#735063;margin-bottom:16px}
+.plinko-board{position:relative;max-width:620px;height:350px;margin:12px auto 18px;border-radius:28px 28px 18px 18px;background:linear-gradient(180deg,#5a347f 0%,#8154ad 45%,#ffe8f1 100%);border:5px solid #fff4b5;box-shadow:inset 0 0 0 3px rgba(255,255,255,.3),0 10px 20px rgba(89,45,116,.2);overflow:hidden}
+.plinko-board:before{content:'PLINKO';position:absolute;top:10px;left:0;right:0;color:#fff7bf;font-size:21px;font-weight:1000;letter-spacing:5px;text-shadow:0 2px 0 #8e477d}
+.plinko-pegs span{position:absolute;left:var(--x);top:var(--y);width:15px;height:15px;border-radius:50%;background:#fff9d4;border:3px solid #ffb4d1;box-shadow:0 2px 4px rgba(0,0,0,.18);transform:translate(-50%,-50%)}
+.plinko-ball{position:absolute;z-index:6;top:45px;left:50%;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 28%,#fff,#ffd44f 30%,#ff8a3d 72%);border:3px solid white;box-shadow:0 5px 10px rgba(69,26,75,.35);font-weight:1000;color:#7a2c73;transform:translateX(-50%);transition:none}
+.plinko-ball.dropping{animation:plinkoBounce 1.45s cubic-bezier(.22,.7,.28,1) forwards}
+@keyframes plinkoBounce{0%{top:45px;left:50%;transform:translateX(-50%) rotate(0)}18%{top:102px;left:43%;transform:translateX(-50%) rotate(90deg)}36%{top:148px;left:57%;transform:translateX(-50%) rotate(180deg)}54%{top:195px;left:45%;transform:translateX(-50%) rotate(270deg)}72%{top:238px;left:var(--plinko-mid,55%);transform:translateX(-50%) rotate(360deg)}100%{top:276px;left:var(--plinko-end,50%);transform:translateX(-50%) rotate(540deg)}}
+.plinko-slots{position:absolute;left:10px;right:10px;bottom:8px;height:68px;display:grid;grid-template-columns:repeat(4,1fr);gap:7px}.plinko-slot{border-radius:12px;padding:5px 2px;color:white;border:3px solid rgba(255,255,255,.9);box-shadow:0 4px 8px rgba(0,0,0,.16);transition:.2s}.plinko-slot strong{display:block;font:900 27px Georgia,serif;line-height:1}.plinko-slot small{font-size:10px;font-weight:900;line-height:1.05}.slot-p{background:#3d9bea}.slot-mp{background:#20ad72}.slot-mf{background:#e3a01b}.slot-f{background:#ef4f72}.plinko-slot.winner{transform:translateY(-8px) scale(1.06);box-shadow:0 0 0 5px #fff4a8,0 8px 18px rgba(0,0,0,.22);filter:brightness(1.08)}
+.plinko-drop-btn{font-size:19px !important;padding:14px 28px !important;border-radius:999px !important}.plinko-drop-btn:disabled{opacity:.65;cursor:wait;transform:none !important}
+.plinko-result{max-width:520px;margin:18px auto 0;padding:17px;border-radius:22px;background:rgba(255,255,255,.72);border:2px solid #ffc1d6}.plinko-result-label{font-weight:1000;color:#7c4c6c;letter-spacing:1px}.plinko-result #cabaranSasaran{font-size:68px !important;line-height:1;margin:7px 0 2px !important}.plinko-result #cabaranMaksud{font-size:18px;font-weight:1000;color:#5f4053}.plinko-result #cabaranStatus{margin-top:10px;font-size:16px}
+.challenge-progress{height:15px;background:#f2dce8;border-radius:999px;overflow:hidden;margin:14px auto 5px;border:2px solid white}.challenge-progress div{height:100%;width:0;background:linear-gradient(90deg,#71c9f1,#9c8bea,#ff77a7,#ffd35e);border-radius:999px;transition:width .15s linear}#challengeProgressText{font-weight:1000;color:#754660}.plinko-result.success{animation:successPop .45s ease}.plinko-result.success:before{content:'✨ 🎉 🏆 🎉 ✨';display:block;font-size:28px;margin-bottom:4px}@keyframes successPop{50%{transform:scale(1.035)}}
+@media(max-width:700px){.plinko-board{height:315px}.plinko-ball{top:42px}.plinko-slots{height:64px}.plinko-slot strong{font-size:23px}.plinko-slot small{font-size:9px}@keyframes plinkoBounce{0%{top:42px;left:50%}18%{top:90px;left:43%}36%{top:132px;left:57%}54%{top:175px;left:45%}72%{top:215px;left:var(--plinko-mid,55%)}100%{top:245px;left:var(--plinko-end,50%)}}}
+
+
+
+/* ===== MOD PENTAKSIRAN CANDYJEM 2.0 ===== */
+#assessmentCard{position:relative;overflow:hidden;background:linear-gradient(180deg,#fffdfd 0%,#fff6fb 48%,#f3f8ff 100%) !important;border:3px solid #ffc0d6 !important}
+#assessmentCard::before{content:"★  ♪  ✦  ♫  ★";position:absolute;right:24px;top:20px;color:#e8a0c0;font-size:20px;letter-spacing:8px;opacity:.7}
+.assessment-hero{text-align:center;margin-bottom:22px}
+.assessment-hero .section-title{font-size:32px !important;margin-bottom:8px}
+.assessment-hero p{font-size:17px;font-weight:750;color:#74536a;margin:0 auto;max-width:680px}
+.assessment-panel{background:rgba(255,255,255,.9);border:2px solid #ffd0df;border-radius:26px;padding:22px;box-shadow:0 10px 25px rgba(177,72,119,.10)}
+.assessment-form{display:grid;grid-template-columns:1fr 1fr;gap:18px 20px}
+.assessment-field{display:flex;flex-direction:column;gap:8px}
+.assessment-field.full{grid-column:1/-1}
+.assessment-form label{font-size:17px;font-weight:900;color:#5d3552}
+.assessment-form input,.assessment-form select{font-size:18px !important;min-height:54px;border:2px solid #e5b8cd !important;background:#fff !important;border-radius:16px !important;padding:12px 15px !important}
+.target-buttons{display:grid !important;grid-template-columns:repeat(4,1fr);gap:12px !important}
+.target-btn{min-height:82px !important;border-radius:20px !important;font-family:Georgia,serif;font-size:38px !important;font-weight:900 !important;position:relative;overflow:hidden}
+.target-btn::after{display:block;font-family:Arial,sans-serif;font-size:11px;font-weight:900;margin-top:3px;letter-spacing:.3px}
+.p-target::after{content:"PERLAHAN"}.mp-target::after{content:"SEDERHANA PERLAHAN"}.mf-target::after{content:"SEDERHANA KUAT"}.f-target::after{content:"KUAT"}
+.p-target{background:#e5f4ff !important;color:#268dd7 !important;border-color:#8fcdf3 !important}.mp-target{background:#e8faef !important;color:#16935d !important;border-color:#8bd4ad !important}.mf-target{background:#fff4d7 !important;color:#c77b00 !important;border-color:#f1c56b !important}.f-target{background:#ffe5ee !important;color:#df3d74 !important;border-color:#f3a0bd !important}
+.target-btn.selected{transform:translateY(-4px) scale(1.03);color:#fff !important;border-color:#fff !important;box-shadow:0 8px 18px rgba(96,55,91,.22) !important}
+.p-target.selected{background:linear-gradient(180deg,#63bdf1,#298fd0) !important}.mp-target.selected{background:linear-gradient(180deg,#58cf8f,#19955d) !important}.mf-target.selected{background:linear-gradient(180deg,#ffc95e,#d78b00) !important}.f-target.selected{background:linear-gradient(180deg,#ff85ad,#df3d74) !important}
+#assessmentReady{margin:20px 0 14px;padding:16px;border-radius:18px;background:#f5edff;border:2px dashed #b99be8;text-align:center;font-size:17px;font-weight:900;color:#6c4c94}
+#startAssessment{width:100%;min-height:62px;font-size:20px !important;border-radius:20px !important;margin-top:6px;background:linear-gradient(90deg,#ff6598,#9d78e8,#55bfe9) !important;border:3px solid #fff0ae !important;box-shadow:0 8px 18px rgba(132,79,157,.22) !important}
+#assessmentLive{margin-top:20px;padding:22px;border-radius:26px;background:linear-gradient(135deg,#fff0f6,#f2ecff 55%,#e8f7ff);border:2px solid #e6b7df;text-align:center}
+.assessment-live-title{font-size:15px;font-weight:900;letter-spacing:1.5px;color:#8a6382;margin-bottom:14px}
+.assessment-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.assessment-grid>div{background:#fff;border:2px solid #f0cfdf;border-radius:22px;padding:15px}
+.small-label{font-size:13px !important;font-weight:900;color:#8d7185;letter-spacing:1.5px}
+#assessmentTarget,#assessmentCurrent{font-family:Georgia,serif;font-size:58px !important;line-height:1.05;margin-top:5px}
+#assessmentTimer{font-size:42px !important;margin:18px 0 12px;color:#6d4ca0 !important}
+.assessment-progress{height:22px !important;background:#fff !important;border:2px solid #e7c7dc;border-radius:999px;overflow:hidden}
+#assessmentProgressBar{height:100%;background:linear-gradient(90deg,#ff74a4,#b18ae9,#65c9ee) !important;border-radius:999px;transition:width .1s linear}
+#assessmentLiveFeedback{margin-top:14px;font-size:18px !important;font-weight:900;background:#fff !important;border:2px solid #f1cfe0;border-radius:16px;padding:12px;color:#65415c !important}
+#assessmentResult{background:linear-gradient(135deg,#fff8d9,#fff0f6,#edf8ff) !important;border:3px solid #ffc2d6 !important;border-radius:26px !important;padding:22px !important;text-align:center}
+#assessmentResult h2{font-size:28px;color:#b13f72;margin-top:0}.result-row{display:flex;justify-content:space-between;gap:20px;padding:12px 14px;margin:8px 0;background:rgba(255,255,255,.8);border-radius:14px;font-size:17px}.result-row span{font-weight:800;color:#76586b}.result-row strong{font-size:18px;color:#4d2e46;text-align:right}#achievementResult{margin-top:16px;padding:16px;border-radius:18px;background:#fff;font-size:20px;font-weight:900;color:#9a4770}
+.assessment-tip{margin-top:18px !important;background:#fff8e8 !important;border:1px solid #f0d69a !important;border-radius:16px;padding:13px 15px !important;text-align:center;color:#705a65 !important}
+@media(max-width:700px){.assessment-form{grid-template-columns:1fr}.assessment-field.full{grid-column:auto}.target-buttons{grid-template-columns:repeat(2,1fr)}.target-btn{min-height:76px !important;font-size:34px !important}#assessmentTarget,#assessmentCurrent{font-size:48px !important}.assessment-grid{gap:8px}.assessment-panel{padding:16px}}
+
+
+/* ===== METER DINAMIK LIVE UNTUK MOD PENTAKSIRAN ===== */
+.assessment-dynamic-meter{margin:18px 0 8px;padding:16px 16px 14px;background:#fff;border:2px solid #efd2e3;border-radius:22px}
+.assessment-meter-heading{font-size:14px;font-weight:900;letter-spacing:1px;color:#76586b;margin-bottom:12px}
+.assessment-meter-track{position:relative;height:34px;border-radius:999px;background:linear-gradient(90deg,#78c9ff 0%,#73d8c0 34%,#ffd46b 67%,#ff8fb2 100%);border:3px solid #fff;box-shadow:0 0 0 2px #ead0df;overflow:visible}
+.assessment-meter-zones{display:grid;grid-template-columns:repeat(4,1fr);margin-top:9px;font-weight:900;font-size:20px;opacity:.88}
+.assessment-meter-zones span:nth-child(1){color:#318fd0}.assessment-meter-zones span:nth-child(2){color:#15965e}.assessment-meter-zones span:nth-child(3){color:#c27d00}.assessment-meter-zones span:nth-child(4){color:#d93b70}
+#assessmentMeterMarker{position:absolute;left:0%;top:50%;width:42px;height:42px;border-radius:50%;transform:translate(-50%,-50%);display:grid;place-items:center;background:#fff;border:3px solid #704c88;box-shadow:0 4px 10px rgba(78,45,88,.22);font-size:23px;transition:left .18s ease;z-index:2}
+#assessmentTargetMarker{position:absolute;top:-13px;left:0%;transform:translateX(-50%);font-size:20px;filter:drop-shadow(0 2px 2px rgba(0,0,0,.15));transition:left .2s ease}
+#assessmentDirection{margin-top:14px;min-height:48px;padding:11px 14px;border-radius:15px;background:#f7f0fb;font-size:18px;font-weight:900;color:#65415c;display:flex;align-items:center;justify-content:center}
+#assessmentDirection.correct{background:#e9faef;color:#187446}
+#assessmentDirection.up{background:#fff6d9;color:#8c6500}
+#assessmentDirection.down{background:#eaf6ff;color:#2674a5}
+@media(max-width:700px){.assessment-meter-track{height:30px}.assessment-meter-zones{font-size:17px}#assessmentDirection{font-size:16px}}
+
+
+
+/* ===== LEVEL 2: CRESCENDO & DECRESCENDO ===== */
+.level2-launch{display:none;margin:18px 0 8px;text-align:center}
+.level2-launch button{width:100%;min-height:64px;font-size:19px;border:none;border-radius:20px;font-weight:900;cursor:pointer;color:white;background:linear-gradient(90deg,#7c64d8,#e55b96,#52bde8);border:3px solid #fff0ae;box-shadow:0 7px 16px rgba(104,72,145,.20)}
+#level2Page{display:none;margin-top:24px}
+.level2-hero{padding:24px;border-radius:28px;text-align:center;background:linear-gradient(135deg,#f3ecff,#fff1f6 52%,#eaf8ff);border:2px solid #dfb7e4}
+.level2-hero h2{font-family:Georgia,serif;color:#7a2346;font-size:34px;margin:0 0 8px}
+.level2-hero p{font-weight:800;color:#6f5870;margin:4px 0}
+.level2-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px}
+.level2-note{padding:20px;border-radius:24px;background:#fff;border:2px solid #ecd1e2;text-align:center}
+.level2-symbol{font-size:68px;line-height:1;color:#7b4bb4;font-family:Georgia,serif;font-weight:900}
+.level2-note h3{font-size:24px;color:#7a2346;margin:8px 0}.level2-note p{font-size:17px;font-weight:800;color:#674f61}
+.dynamic-path{height:22px;border-radius:999px;margin:14px 0;background:linear-gradient(90deg,#75c8f7,#79d7ba,#ffd06b,#f985ad)}
+.dynamic-path.reverse{background:linear-gradient(90deg,#f985ad,#ffd06b,#79d7ba,#75c8f7)}
+.level2-card{margin-top:18px;padding:22px;border-radius:26px;background:rgba(255,255,255,.92);border:2px solid #ecc8df}
+.level2-card h3{text-align:center;color:#7a2346;font-size:26px;margin:0 0 14px}
+.example-buttons,.l2-duration{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.example-buttons button,.l2-duration button,.l2-action{border:none;border-radius:16px;padding:12px 18px;font-weight:900;cursor:pointer;color:white;background:linear-gradient(180deg,#a17ae4,#7550c3);min-height:46px}
+.youtube-box{margin-top:16px;padding:18px;border:2px dashed #d7b8df;border-radius:20px;background:#faf5ff;text-align:center;color:#735e77;font-weight:800}
+.youtube-box input{width:min(620px,100%);box-sizing:border-box;margin-top:10px;padding:12px;border:2px solid #dfc8e2;border-radius:12px;font-size:16px}
+.youtube-frame{display:none;margin:14px auto 0;width:min(720px,100%);aspect-ratio:16/9;border:0;border-radius:18px;background:#eee}
+.l2-practice-controls{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.l2-practice-btn{min-height:78px;border:3px solid transparent;border-radius:20px;background:#fff;font-size:19px;font-weight:900;cursor:pointer;color:#6e4261}
+.l2-practice-btn.selected{border-color:#a66bd0;background:#f5ecff}
+.l2-meter-wrap{margin-top:18px;padding:16px;background:#fff;border:2px solid #ecd3e2;border-radius:22px}
+.l2-meter{height:34px;border-radius:999px;position:relative;background:linear-gradient(90deg,#75c8f7,#79d7ba,#ffd06b,#f985ad);border:3px solid #fff;box-shadow:0 0 0 2px #e6d0df}
+#l2PracticeMarker,#l2AssessMarker{position:absolute;left:0%;top:50%;width:42px;height:42px;transform:translate(-50%,-50%);border-radius:50%;display:grid;place-items:center;background:#fff;border:3px solid #704c88;box-shadow:0 4px 10px rgba(78,45,88,.22);font-size:22px;transition:left .16s linear}
+.l2-meter-labels{display:flex;justify-content:space-between;margin-top:8px;font-size:21px;font-weight:900}.l2-meter-labels span:first-child{color:#2f8fcf}.l2-meter-labels span:last-child{color:#df3d74}
+#l2PracticeFeedback,#l2AssessFeedback{margin-top:14px;padding:12px;border-radius:15px;background:#f5effa;font-size:17px;font-weight:900;text-align:center;color:#65415c;min-height:24px}
+.wheel-area{text-align:center}
+.wheel{width:260px;height:260px;margin:12px auto;position:relative;border-radius:50%;background:conic-gradient(#8dd9f5 0 50%,#f78db2 50% 100%);border:8px solid #fff;box-shadow:0 0 0 3px #d8b5dc,0 8px 18px rgba(83,53,99,.18);transition:transform 2.2s cubic-bezier(.15,.7,.18,1)}
+.wheel:after{content:"";position:absolute;inset:46%;border-radius:50%;background:white;border:3px solid #7b5688}
+.wheel-half{position:absolute;width:50%;font-weight:900;color:#533f5c;font-size:17px;text-align:center}.wheel-cres{left:0;top:45%;transform:rotate(-90deg)}.wheel-decres{right:0;top:45%;transform:rotate(90deg)}
+.wheel-pointer{font-size:34px;margin-bottom:-17px;position:relative;z-index:3;color:#7a2346}
+#wheelResult{font-size:24px;font-weight:900;color:#7a2346;min-height:36px;margin:10px 0}
+.l2-assess-setup{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.l2-assess-setup label{display:block;font-weight:900;color:#70546b;margin-bottom:6px}
+.l2-assess-setup input,.l2-assess-setup select{width:100%;box-sizing:border-box;padding:12px;border:2px solid #e4c9da;border-radius:12px;font-size:16px;background:white}
+#l2AssessmentLive{display:none;margin-top:18px;padding:18px;border-radius:22px;background:linear-gradient(135deg,#fff2f7,#f2edff,#eaf8ff);border:2px solid #e1b8df}
+#l2Timer{text-align:center;font-size:38px;font-weight:900;color:#6844a0;margin:14px}
+.l2-target-path{position:relative;height:54px;margin:12px 0}
+.l2-target-line{position:absolute;left:2%;right:2%;top:25px;height:8px;border-radius:999px;background:linear-gradient(90deg,#75c8f7,#79d7ba,#ffd06b,#f985ad)}
+.l2-target-arrow{position:absolute;left:0;right:0;top:0;text-align:center;font-size:18px;font-weight:900;color:#76526d}
+#l2Result{display:none;margin-top:16px;padding:18px;border-radius:20px;background:#fff8df;border:2px solid #efcf8e;text-align:center;font-weight:900;color:#664b59}
+@media(max-width:700px){.level2-grid,.l2-assess-setup,.l2-practice-controls{grid-template-columns:1fr}.level2-hero h2{font-size:28px}.wheel{width:220px;height:220px}}
+
+
+/* ===== PILIHAN LEVEL SELEPAS MIKROFON ===== */
+.level-selector{display:none;margin:18px 0 24px;padding:22px;border-radius:26px;background:linear-gradient(135deg,#fff8dc,#ffeef5 52%,#edf8ff);border:2px solid #efc5d7;text-align:center}
+.level-selector h2{font-family:Georgia,serif;color:#7a1f35;margin:0 0 6px;font-size:30px}
+.level-selector p{margin:0 0 16px;color:#705866;font-weight:800}
+.level-choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.level-choice{min-height:118px;border-radius:22px;border:3px solid #fff;background:#fff;box-shadow:0 5px 14px rgba(99,56,81,.12);cursor:pointer;padding:16px;font-weight:900;color:#6e3652;transition:.18s ease}
+.level-choice:hover{transform:translateY(-2px)}
+.level-choice .level-num{display:block;font-size:26px;color:#8b2442;margin-bottom:6px}
+.level-choice .level-topic{display:block;font-size:18px}
+.level-choice small{display:block;margin-top:7px;color:#7d6a75;font-size:14px}
+.level-choice.level2-choice{background:linear-gradient(135deg,#f5edff,#eefaff)}
+.level-nav-home{margin:10px 0 18px;text-align:center}
+.level-nav-home button{border:none;border-radius:14px;padding:10px 16px;font-weight:900;cursor:pointer;background:#fff3f7;color:#7b3652;border:2px solid #e8bfd0}
+@media(max-width:700px){.level-choice-grid{grid-template-columns:1fr}.level-selector h2{font-size:26px}}
+
+
+/* ===== REKOD & RAKAMAN ===== */
+.recording-pill{display:none;margin:10px auto;padding:8px 14px;width:max-content;max-width:90%;border-radius:999px;background:#ffe7ef;color:#a32555;font-weight:900}
+.records-card{margin:24px 0;padding:20px;border-radius:24px;background:rgba(255,255,255,.94);border:2px solid #e7c7dc}
+.records-card h2{text-align:center;color:#7a2346;margin:0 0 8px}
+.records-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:12px 0}
+.records-actions button{border:none;border-radius:14px;padding:11px 15px;font-weight:900;cursor:pointer;background:#7954c7;color:white}
+.records-table-wrap{overflow:auto;border:1px solid #ead6e2;border-radius:16px}
+.records-table{width:100%;border-collapse:collapse;min-width:820px;background:white}
+.records-table th,.records-table td{padding:10px;border-bottom:1px solid #eee;text-align:left;font-size:14px}
+.records-table th{background:#f7eff8;color:#68475e}
+.records-table audio{width:190px;height:34px}
+.record-note{text-align:center;color:#78636f;font-size:13px;font-weight:700;margin-top:10px}
+
+
+.record-decision{display:none;margin-top:16px;padding:15px;border-radius:18px;background:#fff7fb;border:2px solid #edc9dc;text-align:center}
+.record-decision-title{font-weight:900;color:#71445d;margin-bottom:10px}
+.record-decision-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.record-decision-actions button{border:none;border-radius:14px;padding:11px 16px;font-weight:900;cursor:pointer}
+.save-record-btn{background:#4ebc8a;color:white}.discard-record-btn{background:#ef7698;color:white}
+
 </style>
 </head>
 
@@ -1083,9 +1236,25 @@ body::before {
 
   </div>
 
+  <div class="level-selector" id="levelSelector">
+    <h2>🎼 Pilih Level MuziDynamic</h2>
+    <p>Mikrofon sudah aktif. Pilih topik yang ingin digunakan.</p>
+    <div class="level-choice-grid">
+      <button type="button" class="level-choice" onclick="pilihLevel(1)">
+        <span class="level-num">🎤 LEVEL 1</span>
+        <span class="level-topic">Aras Dinamik</span>
+        <small>p • mp • mf • f</small>
+      </button>
+      <button type="button" class="level-choice level2-choice" onclick="pilihLevel(2)">
+        <span class="level-num">🎼 LEVEL 2</span>
+        <span class="level-topic">Crescendo &amp; Decrescendo</span>
+        <small>p → f &nbsp; • &nbsp; f → p</small>
+      </button>
+    </div>
+  </div>
 
-  <!-- CALIBRATION -->
-  <div class="card">
+  <!-- CALIBRATION: preset dalaman, panel disembunyikan untuk penggunaan kelas -->
+  <div class="card" id="calibrationCard" style="display:none;">
 
     <div class="section-title">
       🎚️ Mod Penentukuran
@@ -1169,6 +1338,8 @@ body::before {
   </div>
 
 
+<div id="level1Page" style="display:none;">
+  <div class="level-nav-home"><button type="button" onclick="kembaliPilihLevel()">← Tukar Level</button></div>
   <!-- PRACTICE MODE -->
   <div class="card practice-card" id="practiceCard" style="display:none;">
 
@@ -1258,141 +1429,250 @@ body::before {
     </div>
     <div id="audioStatus" class="note" style="margin-top:12px">🎧 Pilih satu aras untuk mendengar contoh nada pada kekuatan relatif yang berbeza.</div>
 
-    <div class="cabaran-box">
-      <div class="section-title" style="font-size:24px">🏆 Mod Praktis</div>
-      <div>Tekan <strong>Cabaran Baharu</strong>. Sistem akan memilih satu sasaran secara rawak. Nyanyi mengikut sasaran itu dan kekalkan sehingga berjaya.</div>
-      <div id="cabaranSasaran">?</div>
-      <div id="cabaranMaksud">Tekan Cabaran Baharu untuk mendapatkan sasaran.</div>
-      <div style="margin-top:12px"><button class="cabaran-btn" onclick="cabaranBaharu()">🎲 Cabaran Baharu</button></div>
-      <div id="cabaranStatus">Aktifkan mikrofon dan lengkapkan penentukuran sebelum mencuba.</div>
+    <div class="cabaran-box plinko-challenge">
+      <div class="section-title plinko-title">🎵 DYNAMIC PLINKO CHALLENGE 🎵</div>
+      <div class="plinko-subtitle">Jatuhkan bola dan lihat cabaran dinamik anda!</div>
+
+      <div class="plinko-board" id="plinkoBoard" aria-label="Dynamic Plinko">
+        <div class="plinko-ball" id="plinkoBall">♪</div>
+        <div class="plinko-pegs" aria-hidden="true">
+          <span style="--x:50%;--y:18%"></span>
+          <span style="--x:39%;--y:31%"></span><span style="--x:61%;--y:31%"></span>
+          <span style="--x:28%;--y:44%"></span><span style="--x:50%;--y:44%"></span><span style="--x:72%;--y:44%"></span>
+          <span style="--x:17%;--y:57%"></span><span style="--x:39%;--y:57%"></span><span style="--x:61%;--y:57%"></span><span style="--x:83%;--y:57%"></span>
+        </div>
+        <div class="plinko-slots">
+          <div class="plinko-slot slot-p" data-dynamic="p"><strong>p</strong><small>Perlahan</small></div>
+          <div class="plinko-slot slot-mp" data-dynamic="mp"><strong>mp</strong><small>Sederhana<br>Perlahan</small></div>
+          <div class="plinko-slot slot-mf" data-dynamic="mf"><strong>mf</strong><small>Sederhana<br>Kuat</small></div>
+          <div class="plinko-slot slot-f" data-dynamic="f"><strong>f</strong><small>Kuat</small></div>
+        </div>
+      </div>
+
+      <button class="cabaran-btn plinko-drop-btn" id="plinkoDropBtn" onclick="cabaranBaharu()">🔮 JATUHKAN BOLA!</button>
+
+      <div class="plinko-result" id="plinkoResult">
+        <div class="plinko-result-label">🎯 CABARAN ANDA</div>
+        <div id="cabaranSasaran">?</div>
+        <div id="cabaranMaksud">Tekan “Jatuhkan Bola!” untuk mendapatkan sasaran.</div>
+        <div id="cabaranStatus">🎤 Bersedia untuk cabaran dinamik!</div>
+        <div class="challenge-progress"><div id="challengeProgressFill"></div></div>
+        <div id="challengeProgressText">0%</div>
+      </div>
     </div>
   </div>
 
 <div class="card" id="assessmentCard">
-
-  <div class="section-title">
-    🎯 Mod Pentaksiran
+  <div class="assessment-hero">
+    <div class="section-title">🎯 Misi Pentaksiran MuziDynamic</div>
+    <p>Isi maklumat, pilih dinamik dan tempoh, kemudian tunjukkan kawalan dinamik anda!</p>
   </div>
 
-  <p>Uji keupayaan murid menghasilkan dinamik yang ditetapkan.</p>
-
-  <div class="assessment-form">
-
-    <label>Nama / Kod Murid</label>
-    <input
-      type="text"
-      id="studentName"
-      placeholder="Contoh: Daphne / M01">
-
-    <label>Kelas</label>
-    <input
-      type="text"
-      id="studentClass"
-      placeholder="Contoh: 5 Abu Bakar">
-
-    <label>Dinamik Sasaran</label>
-
-    <div class="target-buttons">
-      <button class="target-btn p-target" data-target="p">p</button>
-      <button class="target-btn mp-target" data-target="mp">mp</button>
-      <button class="target-btn mf-target" data-target="mf">mf</button>
-      <button class="target-btn f-target" data-target="f">f</button>
-    </div>
-
-    <label>Tempoh Pentaksiran</label>
-
-    <select id="assessmentDuration">
-      <option value="5">5 saat</option>
-      <option value="10" selected>10 saat</option>
-      <option value="15">15 saat</option>
-      <option value="20">20 saat</option>
-    </select>
-
-  </div>
-
-  <div id="assessmentReady">
-    Pilih dinamik sasaran untuk memulakan pentaksiran.
-  </div>
-
-  <div id="assessmentLive" style="display:none;">
-
-    <div class="assessment-grid">
-
-      <div>
-        <div class="small-label">SASARAN</div>
-        <div id="assessmentTarget">—</div>
+  <div class="assessment-panel">
+    <div class="assessment-form">
+      <div class="assessment-field">
+        <label>👧 Nama / Kod Murid</label>
+        <input type="text" id="studentName" placeholder="Contoh: Daphne / M01">
       </div>
-
-      <div>
-        <div class="small-label">SEMASA</div>
-        <div id="assessmentCurrent">—</div>
+      <div class="assessment-field">
+        <label>🏫 Kelas</label>
+        <input type="text" id="studentClass" placeholder="Contoh: 5 Abu Bakar">
       </div>
-
+      <div class="assessment-field full">
+        <label>🎵 Pilih Dinamik Sasaran</label>
+        <div class="target-buttons">
+          <button class="target-btn p-target" data-target="p">p</button>
+          <button class="target-btn mp-target" data-target="mp">mp</button>
+          <button class="target-btn mf-target" data-target="mf">mf</button>
+          <button class="target-btn f-target" data-target="f">f</button>
+        </div>
+      </div>
+      <div class="assessment-field full">
+        <label>⏱️ Pilih Tempoh Pentaksiran</label>
+        <select id="assessmentDuration">
+          <option value="5">5 saat</option><option value="10" selected>10 saat</option><option value="15">15 saat</option><option value="20">20 saat</option>
+        </select>
+      </div>
     </div>
 
-    <div id="assessmentTimer">10.0 s</div>
+    <div id="assessmentReady">✨ Pilih dinamik sasaran untuk memulakan misi.</div>
 
-    <div class="assessment-progress">
-      <div id="assessmentProgressBar"></div>
+    <div id="assessmentLive" style="display:none;">
+      <div class="assessment-live-title">🎤 MISI SEDANG BERLANGSUNG</div>
+      <div class="assessment-grid">
+        <div><div class="small-label">🎯 SASARAN</div><div id="assessmentTarget">—</div></div>
+        <div><div class="small-label">🎙️ DINAMIK SEMASA</div><div id="assessmentCurrent">—</div></div>
+      </div>
+      <div class="assessment-dynamic-meter">
+        <div class="assessment-meter-heading">🎚️ LIHAT KEDUDUKAN SUARA ANDA</div>
+        <div class="assessment-meter-track">
+          <div id="assessmentTargetMarker" title="Sasaran">🎯</div>
+          <div id="assessmentMeterMarker" title="Dinamik semasa">🎤</div>
+        </div>
+        <div class="assessment-meter-zones">
+          <span>p</span><span>mp</span><span>mf</span><span>f</span>
+        </div>
+        <div id="assessmentDirection">🎵 Hasilkan bunyi untuk melihat kedudukan suara anda.</div>
+      </div>
+      <div id="assessmentTimer">10.0 s</div>
+      <div class="assessment-progress"><div id="assessmentProgressBar"></div></div>
+      <div id="assessmentLiveFeedback">🎵 Bersedia</div>
+      <div class="recording-pill" id="recordingPillL1">🔴 Rakaman suara sedang berjalan</div>
     </div>
 
-    <div id="assessmentLiveFeedback">
-      🎵 Bersedia
-    </div>
+    <button id="startAssessment" class="primary" onclick="mulaAssessment()" disabled>🎙️ MULAKAN MISI</button>
 
+    <div id="assessmentResult" style="display:none;">
+      <h2>🏆 Misi Selesai!</h2>
+      <div class="result-row"><span>👧 Murid</span><strong id="resultStudent">—</strong></div>
+      <div class="result-row"><span>🎯 Dinamik Sasaran</span><strong id="resultTarget">—</strong></div>
+      <div class="result-row"><span>✨ Sepadan Sasaran</span><strong id="resultSepadan">—</strong></div>
+      <div class="result-row"><span>🎤 Bunyi Aktif</span><strong id="resultActive">—</strong></div>
+      <div class="result-row"><span>📊 Ketepatan</span><strong id="resultKetepatan">—</strong></div>
+      <div id="achievementResult"></div>
+      <div class="record-decision" id="recordDecisionL1">
+        <div class="record-decision-title">🎧 Mahu simpan percubaan ini?</div>
+        <div class="record-decision-actions">
+          <button type="button" class="save-record-btn" onclick="simpanPercubaan()">💾 SIMPAN REKOD</button>
+          <button type="button" class="discard-record-btn" onclick="buangPercubaanDanCubaLagi(1)">🔄 JANGAN SIMPAN & CUBA LAGI</button>
+        </div>
+      </div>
+      <div class="level2-launch" id="level2Launch">
+        <button type="button" onclick="bukaLevel2()">🎼 TERUSKAN KE LEVEL 2: CRESCENDO & DECRESCENDO →</button>
+      </div>
+    </div>
   </div>
 
-  <button
-    id="startAssessment"
-    class="primary"
-    onclick="mulaAssessment()"
-    disabled>
-    ▶️ MULA PENTAKSIRAN
-  </button>
-
-  <div id="assessmentResult" style="display:none;">
-
-    <h2>🎉 Keputusan Pentaksiran</h2>
-
-    <div class="result-row">
-      <span>Murid</span>
-      <strong id="resultStudent">—</strong>
-    </div>
-
-    <div class="result-row">
-      <span>Target</span>
-      <strong id="resultTarget">—</strong>
-    </div>
-
-    <div class="result-row">
-      <span>Sepadan Target</span>
-      <strong id="resultSepadan">—</strong>
-    </div>
-
-    <div class="result-row">
-      <span>Bunyi Aktif</span>
-      <strong id="resultActive">—</strong>
-    </div>
-
-    <div class="result-row">
-      <span>Ketepatan</span>
-      <strong id="resultKetepatan">—</strong>
-    </div>
-
-    <div id="achievementResult"></div>
-
-  </div>
-
-  <div class="note">
-    Ketepatan dikira berdasarkan masa bunyi aktif yang
-    diklasifikasikan sebagai dinamik sasaran. Senyap tidak
-    dikira sebagai kesalahan dinamik.
-  </div>
-
+  <div class="note assessment-tip">💡 Ketepatan dikira berdasarkan masa bunyi aktif yang sepadan dengan dinamik sasaran. Senyap tidak dikira sebagai kesalahan dinamik.</div>
 </div>
 
 </div>
 
+
+
+</div>
+
+<div id="level2Page">
+  <div class="level-nav-home"><button type="button" onclick="kembaliPilihLevel()">← Tukar Level</button></div>
+  <div class="level2-hero">
+    <div style="font-size:15px;font-weight:900;letter-spacing:2px;color:#8b6b8d">🎼 MUZIDYNAMIC • LEVEL 2</div>
+    <h2>Crescendo & Decrescendo</h2>
+    <p>Belajar mengubah kekuatan bunyi secara beransur-ansur.</p>
+  </div>
+
+  <div class="level2-grid">
+    <div class="level2-note">
+      <div class="level2-symbol">&lt;</div>
+      <h3>Crescendo</h3>
+      <p>Bunyi menjadi <strong>semakin kuat</strong>.</p>
+      <div class="dynamic-path"></div>
+      <div style="font-weight:900">p &nbsp; → &nbsp; f</div>
+    </div>
+    <div class="level2-note">
+      <div class="level2-symbol">&gt;</div>
+      <h3>Decrescendo</h3>
+      <p>Bunyi menjadi <strong>semakin lembut</strong>.</p>
+      <div class="dynamic-path reverse"></div>
+      <div style="font-weight:900">f &nbsp; → &nbsp; p</div>
+    </div>
+  </div>
+
+  <div class="level2-card">
+    <h3>🎧 Dengar Contoh</h3>
+    <div class="example-buttons">
+      <button type="button" onclick="mainContohPerubahan('crescendo')">▶ Contoh Crescendo</button>
+      <button type="button" onclick="mainContohPerubahan('decrescendo')">▶ Contoh Decrescendo</button>
+    </div>
+    <div id="l2AudioStatus" style="text-align:center;margin-top:12px;font-weight:800;color:#6c5369">Pilih contoh untuk mendengar perubahan bunyi.</div>
+    <div class="youtube-box">
+      📺 <strong>Video YouTube Contoh</strong><br>
+      Guru boleh tampal pautan YouTube di sini apabila ada internet.
+      <div><input id="youtubeUrl" type="url" placeholder="Tampal pautan YouTube, contoh: https://www.youtube.com/watch?v=..."></div>
+      <button type="button" class="l2-action" style="margin-top:10px" onclick="muatVideoYouTube()">Papar Video</button>
+      <iframe id="youtubeFrame" class="youtube-frame" title="Video contoh crescendo dan decrescendo" allow="accelerometer; autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <div class="level2-card">
+    <h3>🎤 Mod Praktis Perubahan Dinamik</h3>
+    <div class="l2-practice-controls">
+      <button type="button" class="l2-practice-btn" data-l2practice="crescendo" onclick="pilihPraktisL2('crescendo')">＜ CRESCENDO<br><small>p → f</small></button>
+      <button type="button" class="l2-practice-btn" data-l2practice="decrescendo" onclick="pilihPraktisL2('decrescendo')">＞ DECRESCENDO<br><small>f → p</small></button>
+    </div>
+    <div class="l2-meter-wrap">
+      <div style="text-align:center;font-weight:900;color:#70546b;margin-bottom:10px">🎚️ PERGERAKAN SUARA ANDA</div>
+      <div class="l2-meter"><div id="l2PracticeMarker" style="opacity:0">🎤</div></div>
+      <div class="l2-meter-labels"><span>p</span><span>f</span></div>
+      <div id="l2PracticeFeedback">Pilih Crescendo atau Decrescendo, kemudian hasilkan bunyi secara beransur-ansur.</div>
+    </div>
+  </div>
+
+  <div class="level2-card">
+    <h3>🎡 Pentaksiran Level 2</h3>
+    <div class="wheel-area">
+      <div class="wheel-pointer">▼</div>
+      <div class="wheel" id="dynamicWheel">
+        <div class="wheel-half wheel-cres">＜ p → f</div>
+        <div class="wheel-half wheel-decres">＞ f → p</div>
+      </div>
+      <button type="button" class="l2-action" id="spinWheelBtn" onclick="putarRodaL2()">🎡 PUTAR RODA</button>
+      <div id="wheelResult">Putar roda untuk mendapatkan tugasan.</div>
+    </div>
+
+    <div class="l2-assess-setup">
+      <div><label>👧 Nama / Kod Murid</label><input id="l2StudentName" type="text" placeholder="Contoh: Daphne / M01"></div>
+      <div><label>🏫 Kelas</label><input id="l2StudentClass" type="text" placeholder="Contoh: 5 Abu Bakar"></div>
+      <div style="grid-column:1/-1"><label>⏱️ Tempoh</label>
+        <select id="l2Duration"><option value="5">5 saat</option><option value="8" selected>8 saat</option><option value="10">10 saat</option><option value="15">15 saat</option></select>
+      </div>
+    </div>
+
+    <button type="button" class="l2-action" id="startL2Assessment" style="width:100%;margin-top:14px;font-size:18px" onclick="mulaPentaksiranL2()" disabled>🎙️ MULAKAN PENTAKSIRAN</button>
+
+    <div id="l2AssessmentLive">
+      <div style="text-align:center;font-weight:900;color:#76526d">🎯 TUGASAN: <span id="l2LiveTarget">—</span></div>
+      <div class="l2-target-path"><div class="l2-target-arrow" id="l2TargetArrow">p → f</div><div class="l2-target-line"></div></div>
+      <div class="l2-meter-wrap">
+        <div class="l2-meter"><div id="l2AssessMarker" style="opacity:0">🎤</div></div>
+        <div class="l2-meter-labels"><span>p</span><span>f</span></div>
+      </div>
+      <div id="l2Timer">8.0 s</div>
+      <div id="l2AssessFeedback">🎵 Bersedia...</div>
+      <div class="recording-pill" id="recordingPillL2">🔴 Rakaman suara sedang berjalan</div>
+    </div>
+
+    <div id="l2Result"></div>
+    <div class="record-decision" id="recordDecisionL2">
+      <div class="record-decision-title">🎧 Mahu simpan percubaan ini?</div>
+      <div class="record-decision-actions">
+        <button type="button" class="save-record-btn" onclick="simpanPercubaan()">💾 SIMPAN REKOD</button>
+        <button type="button" class="discard-record-btn" onclick="buangPercubaanDanCubaLagi(2)">🔄 JANGAN SIMPAN & CUBA LAGI</button>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin:18px 0">
+    <button type="button" class="l2-action" onclick="kembaliLevel1()">← Kembali ke Level 1</button>
+  </div>
+</div>
+
+
+<div class="records-card" id="teacherRecords">
+  <h2>📋 Rekod Pentaksiran Guru</h2>
+  <div style="text-align:center;font-weight:800;color:#705866">Keputusan dan rakaman disimpan pada peranti/browser ini.</div>
+  <div class="records-actions">
+    <button type="button" onclick="paparRekodPentaksiran()">🔄 Muat Semula Rekod</button>
+    <button type="button" onclick="eksportRekodCSV()">📊 Eksport CSV / Excel</button>
+    <button type="button" onclick="padamSemuaRekod()">🗑️ Padam Semua Rekod</button>
+  </div>
+  <div class="records-table-wrap">
+    <table class="records-table">
+      <thead><tr><th>Tarikh</th><th>Nama</th><th>Kelas</th><th>Level</th><th>Sasaran</th><th>Skor</th><th>Rakaman</th></tr></thead>
+      <tbody id="recordsBody"><tr><td colspan="7">Belum ada rekod.</td></tr></tbody>
+    </table>
+  </div>
+  <div class="record-note">🔒 Versi ini menyimpan data secara lokal menggunakan IndexedDB. Data belum dihantar ke pangkalan data awan.</div>
+</div>
 
   <footer class="app-footer">
     <div>🎼 <strong>MuziDynamic</strong> • Aplikasi pembelajaran dinamik muzik interaktif</div>
@@ -1402,6 +1682,110 @@ body::before {
 
 
 <script>
+
+/* ===== RAKAMAN SUARA & REKOD LOKAL (IndexedDB) ===== */
+let assessmentRecorder=null;
+let assessmentAudioChunks=[];
+let pendingAssessmentRecord=null;
+let pendingAssessmentAudio=null;
+
+function bukaDBRekod(){
+  return new Promise((resolve,reject)=>{
+    const req=indexedDB.open("MuziDynamicDB",1);
+    req.onupgradeneeded=()=>{const db=req.result;if(!db.objectStoreNames.contains("assessments"))db.createObjectStore("assessments",{keyPath:"id",autoIncrement:true});};
+    req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);
+  });
+}
+async function simpanRekodPentaksiran(record){
+  const db=await bukaDBRekod();
+  return new Promise((resolve,reject)=>{
+    const tx=db.transaction("assessments","readwrite");tx.objectStore("assessments").add(record);
+    tx.oncomplete=()=>{db.close();resolve();};tx.onerror=()=>reject(tx.error);
+  });
+}
+async function dapatkanSemuaRekod(){
+  const db=await bukaDBRekod();
+  return new Promise((resolve,reject)=>{
+    const req=db.transaction("assessments","readonly").objectStore("assessments").getAll();
+    req.onsuccess=()=>{db.close();resolve(req.result||[]);};req.onerror=()=>reject(req.error);
+  });
+}
+function mulaRakamanPentaksiran(level){
+  if(!microphoneStream||typeof MediaRecorder==="undefined")return;
+  assessmentAudioChunks=[]; pendingAssessmentAudio=null;
+  try{
+    const preferred=MediaRecorder.isTypeSupported&&MediaRecorder.isTypeSupported("audio/webm;codecs=opus")?"audio/webm;codecs=opus":"";
+    assessmentRecorder=preferred?new MediaRecorder(microphoneStream,{mimeType:preferred}):new MediaRecorder(microphoneStream);
+    assessmentRecorder.ondataavailable=e=>{if(e.data&&e.data.size>0)assessmentAudioChunks.push(e.data);};
+    assessmentRecorder.onstop=()=>{
+      pendingAssessmentAudio=new Blob(assessmentAudioChunks,{type:assessmentRecorder.mimeType||"audio/webm"});
+    };
+    assessmentRecorder.start(250);
+    const pill=document.getElementById(level==="Level 1"?"recordingPillL1":"recordingPillL2");
+    if(pill)pill.style.display="block";
+  }catch(e){console.error("Rakaman gagal:",e);}
+}
+function hentikanRakamanPentaksiran(){
+  if(assessmentRecorder&&assessmentRecorder.state!=="inactive"){
+    try{assessmentRecorder.requestData();}catch(e){}
+    assessmentRecorder.stop();
+  }
+  ["recordingPillL1","recordingPillL2"].forEach(id=>{const e=document.getElementById(id);if(e)e.style.display="none";});
+}
+async function simpanPercubaan(){
+  if(!pendingAssessmentRecord){alert("Tiada percubaan untuk disimpan.");return;}
+  /* MediaRecorder.onstop is asynchronous; wait briefly if blob is not ready yet. */
+  if(!pendingAssessmentAudio) await new Promise(r=>setTimeout(r,250));
+  if(pendingAssessmentAudio){pendingAssessmentRecord.audio=pendingAssessmentAudio;pendingAssessmentRecord.audioType=pendingAssessmentAudio.type;}
+  await simpanRekodPentaksiran(pendingAssessmentRecord);
+  pendingAssessmentRecord=null;pendingAssessmentAudio=null;
+  ["recordDecisionL1","recordDecisionL2"].forEach(id=>{const e=document.getElementById(id);if(e)e.style.display="none";});
+  await paparRekodPentaksiran();
+  alert("✅ Rekod dan rakaman telah disimpan.");
+}
+function buangPercubaanDanCubaLagi(level){
+  pendingAssessmentRecord=null;pendingAssessmentAudio=null;assessmentAudioChunks=[];
+  ["recordDecisionL1","recordDecisionL2"].forEach(id=>{const e=document.getElementById(id);if(e)e.style.display="none";});
+  if(level===1){
+    document.getElementById("assessmentResult").style.display="none";
+    document.getElementById("assessmentReady").style.display="block";
+    document.getElementById("assessmentLive").style.display="none";
+    document.getElementById("startAssessment").textContent="🎙️ MULAKAN MISI";
+    document.getElementById("startAssessment").disabled=!assessmentTarget;
+    document.getElementById("assessmentTimer").textContent=(Number(document.getElementById("assessmentDuration").value)||10).toFixed(1)+" s";
+    document.getElementById("assessmentProgressBar").style.width="0%";
+  }else{
+    document.getElementById("l2Result").style.display="none";
+    document.getElementById("l2AssessmentLive").style.display="none";
+    document.getElementById("startL2Assessment").disabled=!l2WheelTarget;
+  }
+}
+async function paparRekodPentaksiran(){
+  const body=document.getElementById("recordsBody");if(!body)return;
+  const rows=(await dapatkanSemuaRekod()).sort((a,b)=>(b.timestamp||0)-(a.timestamp||0));body.innerHTML="";
+  if(!rows.length){body.innerHTML='<tr><td colspan="7">Belum ada rekod.</td></tr>';return;}
+  rows.forEach(r=>{
+    const tr=document.createElement("tr");
+    [r.date||"",r.name||"",r.className||"",r.level||"",r.target||"",r.score!=null?r.score+"%":""].forEach(v=>{const td=document.createElement("td");td.textContent=v;tr.appendChild(td);});
+    const td=document.createElement("td");
+    if(r.audio){const a=document.createElement("audio");a.controls=true;a.preload="none";a.src=URL.createObjectURL(r.audio);td.appendChild(a);}else td.textContent="Tiada rakaman";
+    tr.appendChild(td);body.appendChild(tr);
+  });
+}
+async function eksportRekodCSV(){
+  const rows=await dapatkanSemuaRekod();if(!rows.length){alert("Belum ada rekod untuk dieksport.");return;}
+  const esc=v=>'"'+String(v??"").replace(/"/g,'""')+'"';
+  const lines=[["Tarikh","Nama","Kelas","Level","Sasaran","Skor (%)"].map(esc).join(",")];
+  rows.forEach(r=>lines.push([r.date,r.name,r.className,r.level,r.target,r.score].map(esc).join(",")));
+  const blob=new Blob(["\ufeff"+lines.join("\r\n")],{type:"text/csv;charset=utf-8"}),a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);a.download="Rekod_MuziDynamic.csv";a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+}
+async function padamSemuaRekod(){
+  if(!confirm("Padam semua rekod dan rakaman pada peranti ini?"))return;
+  const db=await bukaDBRekod();await new Promise((resolve,reject)=>{const tx=db.transaction("assessments","readwrite");tx.objectStore("assessments").clear();tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error);});db.close();paparRekodPentaksiran();
+}
+window.addEventListener("load",()=>{if("indexedDB" in window)paparRekodPentaksiran();});
+
 
 /* ELEMENTS */
 
@@ -1462,6 +1846,7 @@ const practiceFeedback =
 let audioContext;
 let analyser;
 let dataArray;
+let microphoneStream = null;
 
 let smoothedDb = -80;
 let currentRawDb = -80;
@@ -1473,13 +1858,18 @@ let calibrationValid = false;
 
 /* CALIBRATION DATA */
 
-let calibration = {
-  noise: null,
-  p: null,
-  mp: null,
-  mf: null,
-  f: null
+/* PRESET PENENTUKURAN KELAS
+   Nilai ini disimpan terus dalam fail HTML supaya aplikasi boleh digunakan
+   serta-merta tanpa menjalankan penentukuran semula pada hari PdP. */
+const PRESET_CALIBRATION = {
+  noise: -32,
+  p: -27,
+  mp: -24,
+  mf: -16,
+  f: -12
 };
+
+let calibration = {...PRESET_CALIBRATION};
 
 
 /* CLASSIFICATION BOUNDARIES */
@@ -1524,6 +1914,8 @@ async function startMicrophone() {
         }
       });
 
+    microphoneStream = stream;
+
     audioContext =
       new (window.AudioContext ||
       window.webkitAudioContext)();
@@ -1553,8 +1945,17 @@ async function startMicrophone() {
     micButton.style.display =
       "none";
 
-    calibrateButton.disabled =
-      false;
+    /* Terus gunakan preset penentukuran yang telah dibina dalam aplikasi. */
+    if (!calibrationValid) {
+      calibration = {...PRESET_CALIBRATION};
+      finishPenentukuran();
+    }
+    practiceCard.style.display = "none";
+    const selector = document.getElementById("levelSelector");
+    if (selector) {
+      selector.style.display = "block";
+      selector.scrollIntoView({behavior:"smooth", block:"center"});
+    }
 
     updateAudio();
 
@@ -1866,7 +2267,6 @@ function finishPenentukuran() {
     validationMessage.textContent =
       "✅ Penentukuran berjaya! Mod Praktis sedia digunakan.";
 
-    savePenentukuran();
     practiceCard.style.display = "block";
   } else {
     calibrationValid = false;
@@ -2088,44 +2488,15 @@ function savePenentukuran() {
 
 
 function loadPenentukuran() {
+  /* Sentiasa gunakan preset tetap dalam fail HTML.
+     Abaikan calibration lama yang pernah tersimpan dalam browser/localStorage. */
+  localStorage.removeItem("muzidynamicPenentukuran4");
+  calibration = {...PRESET_CALIBRATION};
+  finishPenentukuran();
 
-  const saved =
-    localStorage.getItem(
-      "muzidynamicPenentukuran4"
-    );
-
-  if (!saved) {
-    return;
-  }
-
-  try {
-
-    const savedPenentukuran = JSON.parse(saved);
-
-calibration = {
-  noise: savedPenentukuran.noise ?? null,
-  p: savedPenentukuran.p ?? null,
-  mp: savedPenentukuran.mp ?? null,
-  mf: savedPenentukuran.mf ?? null,
-  f: savedPenentukuran.f ?? null
-};
-
-    instruction.textContent =
-      "Penentukuran tersimpan ditemui. Aktifkan mikrofon untuk menggunakan Mod Praktis.";
-
-    finishPenentukuran();
-
-  }
-
-  catch(error) {
-
-    console.error(
-      "Ralat data penentukuran",
-      error
-    );
-  }
+  instruction.textContent =
+    "Preset dinamik telah ditetapkan. Aktifkan mikrofon dan terus gunakan Mod Praktis.";
 }
-
 
 /* RESET */
 
@@ -2140,13 +2511,7 @@ function resetPenentukuran() {
     "muzidynamicPenentukuran4"
   );
 
-  calibration = {
-  noise: null,
-  p: null,
-  mp: null,
-  mf: null,
-  f: null
-};
+  calibration = {...PRESET_CALIBRATION};
 
   calibrationValid = false;
   stableDynamic = "silence";
@@ -2163,9 +2528,10 @@ function resetPenentukuran() {
     "🎵";
 
   instruction.textContent =
-    "Penentukuran telah ditetapkan semula. Tekan Mulakan Penentukuran untuk mencuba semula.";
+    "Preset penentukuran kelas telah dipulihkan.";
 
   resetProgress();
+  finishPenentukuran();
 }
 
 
@@ -2232,6 +2598,7 @@ loadPenentukuran();
 const assessmentDynamics = ["p", "mp", "mf", "f"];
 let assessmentLastSampleTime = 0;
 let assessmentTimerInterval = null;
+let assessmentVisualPos = 0;
 
 document.querySelectorAll(".target-btn").forEach(button => {
   button.addEventListener("click", function () {
@@ -2261,14 +2628,28 @@ function mulaAssessment() {
   document.getElementById("assessmentReady").style.display = "none";
   document.getElementById("assessmentLive").style.display = "block";
   document.getElementById("assessmentResult").style.display = "none";
+  document.getElementById("recordDecisionL1").style.display = "none";
+  pendingAssessmentRecord=null; pendingAssessmentAudio=null;
   document.getElementById("assessmentTarget").textContent = assessmentTarget;
   document.getElementById("assessmentCurrent").textContent = "—";
+  const assessmentPositions = {p:12.5, mp:37.5, mf:62.5, f:87.5};
+  const targetMarker = document.getElementById("assessmentTargetMarker");
+  const liveMarker = document.getElementById("assessmentMeterMarker");
+  const direction = document.getElementById("assessmentDirection");
+  if (targetMarker) targetMarker.style.left = assessmentPositions[assessmentTarget] + "%";
+  assessmentVisualPos = posisiMeterAssessmentDaripadaDb(smoothedDb);
+  if (liveMarker) liveMarker.style.left = assessmentVisualPos.toFixed(2) + "%";
+  if (direction) {
+    direction.className = "";
+    direction.textContent = "🎵 Hasilkan bunyi untuk melihat kedudukan suara anda.";
+  }
   document.getElementById("assessmentTimer").textContent = duration.toFixed(1) + " s";
   document.getElementById("assessmentProgressBar").style.width = "0%";
   document.getElementById("assessmentLiveFeedback").textContent = "🎵 Hasilkan bunyi sekarang";
   document.getElementById("startAssessment").disabled = true;
   document.querySelectorAll(".target-btn").forEach(btn => btn.disabled = true);
   document.getElementById("assessmentDuration").disabled = true;
+  mulaRakamanPentaksiran("Level 1");
 
   if (assessmentTimerInterval) clearInterval(assessmentTimerInterval);
   assessmentTimerInterval = setInterval(() => {
@@ -2292,17 +2673,97 @@ function updateAssessmentSample(dynamic) {
   if (dynamic === "silence" || dynamic === "none") {
     current.textContent = "—";
     feedback.textContent = "🤫 Senyap — tidak dikira";
+    const direction = document.getElementById("assessmentDirection");
+    if (direction) {
+      direction.className = "";
+      direction.textContent = "🎤 Saya menunggu bunyi anda...";
+    }
     return;
   }
 
   current.textContent = dynamic;
+
+  const order = {p:0, mp:1, mf:2, f:3};
+  const positions = {p:12.5, mp:37.5, mf:62.5, f:87.5};
+  const liveMarker = document.getElementById("assessmentMeterMarker");
+  const direction = document.getElementById("assessmentDirection");
   assessmentTotalTime += delta;
   if (dynamic === assessmentTarget) {
     assessmentCorrectTime += delta;
     feedback.textContent = "✅ Tepat — kekalkan!";
+    if (direction) {
+      direction.className = "correct";
+      direction.textContent = "✨ TEPAT! Kekalkan suara pada tahap " + assessmentTarget + ".";
+    }
   } else {
     feedback.textContent = "🎯 Sasaran: " + assessmentTarget + " | Dikesan: " + dynamic;
+    if (direction && order[dynamic] !== undefined && order[assessmentTarget] !== undefined) {
+      if (order[dynamic] < order[assessmentTarget]) {
+        direction.className = "up";
+        direction.textContent = "⬆️ NAIKKAN sedikit — suara anda masih pada " + dynamic + ".";
+      } else {
+        direction.className = "down";
+        direction.textContent = "⬇️ TURUNKAN sedikit — suara anda sekarang pada " + dynamic + ".";
+      }
+    }
   }
+}
+
+/* Pemetaan khas meter pentaksiran.
+   Sempadan grafik 25% / 50% / 75% diselaraskan tepat dengan sempadan
+   classifier p/mp, mp/mf dan mf/f daripada preset semasa. */
+function posisiMeterAssessmentDaripadaDb(db) {
+  if (!calibrationValid || boundaries.activeGate === null) return 0;
+
+  const anchors = [
+    [boundaries.activeGate, 0],
+    [calibration.p, 12.5],
+    [boundaries.pMp, 25],
+    [calibration.mp, 37.5],
+    [boundaries.mpMf, 50],
+    [calibration.mf, 62.5],
+    [boundaries.mfF, 75],
+    [calibration.f, 87.5]
+  ];
+
+  if (db <= anchors[0][0]) return 0;
+
+  for (let i = 0; i < anchors.length - 1; i++) {
+    const [db1, pos1] = anchors[i];
+    const [db2, pos2] = anchors[i + 1];
+    if (db <= db2) {
+      const range = Math.max(0.1, db2 - db1);
+      const t = Math.max(0, Math.min(1, (db - db1) / range));
+      return pos1 + (pos2 - pos1) * t;
+    }
+  }
+
+  const extra = Math.max(0, db - calibration.f);
+  return Math.min(98, 87.5 + extra * 2.2);
+}
+
+/* Meter pentaksiran bergerak beransur-ansur, tetapi zon grafiknya
+   sentiasa menggunakan sempadan yang sama dengan classifier. */
+function kemasKiniMeterAssessment() {
+  if (!assessmentRunning) return;
+
+  const liveMarker = document.getElementById("assessmentMeterMarker");
+  if (!liveMarker) return;
+
+  const targetPos = posisiMeterAssessmentDaripadaDb(smoothedDb);
+
+  /* Meter pentaksiran sengaja dibuat lebih stabil untuk suara murid.
+     Deadband mengabaikan turun-naik kecil, dan faktor gerakan rendah
+     menghasilkan sedikit "lag" supaya marker tidak melompat-lompat. */
+  const beza = targetPos - assessmentVisualPos;
+  const deadband = 2.2;
+
+  if (Math.abs(beza) > deadband) {
+    const factor = beza > 0 ? 0.055 : 0.040;
+    assessmentVisualPos += beza * factor;
+  }
+
+  liveMarker.style.left = assessmentVisualPos.toFixed(2) + "%";
 }
 
 function tamatAssessment() {
@@ -2314,6 +2775,12 @@ function tamatAssessment() {
     ? Math.round((assessmentCorrectTime / assessmentTotalTime) * 100) : 0;
   const studentName = document.getElementById("studentName").value.trim() || "Tanpa nama";
   const studentClass = document.getElementById("studentClass").value.trim();
+
+  const finalMarker = document.getElementById("assessmentMeterMarker");
+  if (finalMarker) {
+    assessmentVisualPos = posisiMeterAssessmentDaripadaDb(smoothedDb);
+    finalMarker.style.left = assessmentVisualPos.toFixed(2) + "%";
+  }
 
   document.getElementById("assessmentTimer").textContent = "0.0 s";
   document.getElementById("assessmentProgressBar").style.width = "100%";
@@ -2329,12 +2796,27 @@ function tamatAssessment() {
   else if (accuracy >= 80) achievement = "🌟 Menguasai dinamik sasaran";
   else if (accuracy >= 60) achievement = "👍 Hampir menguasai dinamik sasaran";
   document.getElementById("achievementResult").textContent = achievement;
+  pendingAssessmentRecord={
+    timestamp:Date.now(),
+    date:new Date().toLocaleString("ms-MY"),
+    name:studentName,
+    className:studentClass,
+    level:"Level 1",
+    target:assessmentTarget,
+    score:accuracy,
+    activeSeconds:Number((assessmentTotalTime/1000).toFixed(1)),
+    matchedSeconds:Number((assessmentCorrectTime/1000).toFixed(1))
+  };
+  hentikanRakamanPentaksiran();
   document.getElementById("assessmentResult").style.display = "block";
+  document.getElementById("recordDecisionL1").style.display = "block";
+  const level2Launch = document.getElementById("level2Launch");
+  if (level2Launch) level2Launch.style.display = "block";
 
   document.querySelectorAll(".target-btn").forEach(btn => btn.disabled = false);
   document.getElementById("assessmentDuration").disabled = false;
   document.getElementById("startAssessment").disabled = false;
-  document.getElementById("startAssessment").textContent = "🔄 ULANG PENTAKSIRAN";
+  document.getElementById("startAssessment").textContent = "🔄 CUBA MISI LAGI";
 }
 
 
@@ -2370,13 +2852,43 @@ function cabaranBaharu() {
   const pilihan = ["p","mp","mf","f"];
   sasaranCabaran = pilihan[Math.floor(Math.random()*pilihan.length)];
   const maksud = {p:"Perlahan",mp:"Sederhana Perlahan",mf:"Sederhana Kuat",f:"Kuat"};
-  document.getElementById("cabaranSasaran").textContent = sasaranCabaran;
-  document.getElementById("cabaranMaksud").textContent = maksud[sasaranCabaran];
-  document.getElementById("cabaranStatus").textContent = "🎤 Hasilkan bunyi " + sasaranCabaran + " dan kekalkan seketika...";
-  cabaranAktif = true;
-  cabaranMula = performance.now();
+  const posisi = {p:"12.5%",mp:"37.5%",mf:"62.5%",f:"87.5%"};
+  const bola = document.getElementById("plinkoBall");
+  const butang = document.getElementById("plinkoDropBtn");
+  const result = document.getElementById("plinkoResult");
+  const progress = document.getElementById("challengeProgressFill");
+  const progressText = document.getElementById("challengeProgressText");
+
+  cabaranAktif = false;
   cabaranPadanMs = 0;
-  cabaranSampelAkhir = performance.now();
+  document.querySelectorAll(".plinko-slot").forEach(el => el.classList.remove("winner"));
+  if (result) result.classList.remove("success");
+  if (progress) progress.style.width = "0%";
+  if (progressText) progressText.textContent = "0%";
+  document.getElementById("cabaranSasaran").textContent = "?";
+  document.getElementById("cabaranMaksud").textContent = "Bola sedang memilih cabaran...";
+  document.getElementById("cabaranStatus").textContent = "🎵 Tunggu bola mendarat!";
+
+  if (butang) { butang.disabled = true; butang.textContent = "🎵 BOLA SEDANG JATUH..."; }
+  if (bola) {
+    bola.classList.remove("dropping");
+    void bola.offsetWidth;
+    bola.style.setProperty("--plinko-mid", (35 + Math.random()*30) + "%");
+    bola.style.setProperty("--plinko-end", posisi[sasaranCabaran]);
+    bola.classList.add("dropping");
+  }
+
+  setTimeout(() => {
+    document.querySelector('.plinko-slot[data-dynamic="' + sasaranCabaran + '"]')?.classList.add("winner");
+    document.getElementById("cabaranSasaran").textContent = sasaranCabaran;
+    document.getElementById("cabaranMaksud").textContent = maksud[sasaranCabaran];
+    document.getElementById("cabaranStatus").textContent = "🎤 Hasilkan bunyi " + sasaranCabaran + " dan kekalkan seketika...";
+    cabaranAktif = true;
+    cabaranMula = performance.now();
+    cabaranPadanMs = 0;
+    cabaranSampelAkhir = performance.now();
+    if (butang) { butang.disabled = false; butang.textContent = "🔮 JATUHKAN BOLA LAGI!"; }
+  }, 1500);
 }
 
 function kemasKiniCabaran(dinamik) {
@@ -2387,6 +2899,12 @@ function kemasKiniCabaran(dinamik) {
   if (dinamik === sasaranCabaran) cabaranPadanMs += dt;
   else if (dinamik !== "silence") cabaranPadanMs = Math.max(0, cabaranPadanMs - dt*0.35);
 
+  const peratusCabaran = Math.min(100, Math.round((cabaranPadanMs / 1400) * 100));
+  const progress = document.getElementById("challengeProgressFill");
+  const progressText = document.getElementById("challengeProgressText");
+  if (progress) progress.style.width = peratusCabaran + "%";
+  if (progressText) progressText.textContent = peratusCabaran + "%";
+
   const status = document.getElementById("cabaranStatus");
   if (dinamik === "silence") status.textContent = "🎤 Saya menunggu bunyi anda...";
   else if (dinamik === sasaranCabaran) status.textContent = "✨ Tepat! Kekalkan " + sasaranCabaran + "...";
@@ -2394,7 +2912,13 @@ function kemasKiniCabaran(dinamik) {
 
   if (cabaranPadanMs >= 1400) {
     cabaranAktif = false;
-    status.textContent = "🏆 Hebat! Anda berjaya mengekalkan dinamik " + sasaranCabaran + "!";
+    status.textContent = "🏆 BERJAYA! Anda berjaya mengekalkan dinamik " + sasaranCabaran + "!";
+    const progress = document.getElementById("challengeProgressFill");
+    const progressText = document.getElementById("challengeProgressText");
+    const result = document.getElementById("plinkoResult");
+    if (progress) progress.style.width = "100%";
+    if (progressText) progressText.textContent = "100%";
+    if (result) result.classList.add("success");
   }
 }
 
@@ -2474,6 +2998,7 @@ function kemasKiniMeterCandy() {
   if (oldFeedback && feedbackEl) feedbackEl.textContent = oldFeedback.textContent;
 }
 setInterval(kemasKiniMeterCandy, 100);
+setInterval(kemasKiniMeterAssessment, 100);
 
 </script>
 
@@ -2489,6 +3014,274 @@ if ("serviceWorker" in navigator) {
       });
   });
 }
+
+/* ===== LEVEL 2: CRESCENDO & DECRESCENDO ===== */
+let l2PracticeMode = "";
+let l2PracticeHasSound = false;
+let l2WheelTarget = "";
+let l2AssessmentRunning = false;
+let l2AssessmentStart = 0;
+let l2AssessmentDuration = 8;
+let l2AssessmentSamples = [];
+let l2VisualPos = 0;
+let l2TimerHandle = null;
+let l2AudioContext = null;
+let l2WheelRotation = 0;
+
+function pilihLevel(level) {
+  const selector=document.getElementById("levelSelector");
+  const level1=document.getElementById("level1Page");
+  const level2=document.getElementById("level2Page");
+
+  if(selector) selector.style.display="none";
+
+  if(level===1){
+    if(level1) level1.style.display="block";
+    if(level2) level2.style.display="none";
+    if(practiceCard) practiceCard.style.display="block";
+    if(level1) level1.scrollIntoView({behavior:"smooth",block:"start"});
+  } else {
+    if(level1) level1.style.display="none";
+    if(level2) level2.style.display="block";
+    if(level2) level2.scrollIntoView({behavior:"smooth",block:"start"});
+  }
+}
+
+function kembaliPilihLevel() {
+  const selector=document.getElementById("levelSelector");
+  const level1=document.getElementById("level1Page");
+  const level2=document.getElementById("level2Page");
+  if(level1) level1.style.display="none";
+  if(level2) level2.style.display="none";
+  if(selector){
+    selector.style.display="block";
+    selector.scrollIntoView({behavior:"smooth",block:"center"});
+  }
+}
+
+function bukaLevel2() {
+  pilihLevel(2);
+}
+function kembaliLevel1() {
+  pilihLevel(1);
+}
+function mainContohPerubahan(jenis) {
+  if (!l2AudioContext) l2AudioContext = new (window.AudioContext || window.webkitAudioContext)();
+  if (l2AudioContext.state === "suspended") l2AudioContext.resume();
+  const ctx=l2AudioContext, now=ctx.currentTime;
+  const osc=ctx.createOscillator(), gain=ctx.createGain();
+  osc.type="sine"; osc.frequency.value=440;
+  const low=0.025, high=0.22;
+  gain.gain.setValueAtTime(jenis==="crescendo"?low:high,now);
+  gain.gain.linearRampToValueAtTime(jenis==="crescendo"?high:low,now+3.2);
+  gain.gain.linearRampToValueAtTime(0.0001,now+3.5);
+  osc.connect(gain).connect(ctx.destination); osc.start(now); osc.stop(now+3.6);
+  document.getElementById("l2AudioStatus").textContent =
+    jenis==="crescendo" ? "＜ Crescendo: dengar bunyi bergerak daripada lembut kepada kuat." :
+                          "＞ Decrescendo: dengar bunyi bergerak daripada kuat kepada lembut.";
+}
+function muatVideoYouTube() {
+  const input=document.getElementById("youtubeUrl").value.trim();
+  let id="";
+  try {
+    const u=new URL(input);
+    if (u.hostname.includes("youtu.be")) id=u.pathname.slice(1).split("/")[0];
+    else if (u.hostname.includes("youtube.com")) {
+      id=u.searchParams.get("v") || (u.pathname.includes("/embed/") ? u.pathname.split("/embed/")[1].split("/")[0] : "");
+    }
+  } catch(e) {}
+  if (!id) { alert("Sila tampal pautan YouTube yang sah."); return; }
+  const frame=document.getElementById("youtubeFrame");
+  frame.src="https://www.youtube.com/embed/"+encodeURIComponent(id);
+  frame.style.display="block";
+}
+function pilihPraktisL2(jenis) {
+  l2PracticeMode=jenis;
+  l2PracticeHasSound=false;
+  const pm=document.getElementById("l2PracticeMarker");
+  if(pm){
+    pm.style.opacity="0";
+    pm.dataset.pos="";
+  }
+  document.querySelectorAll(".l2-practice-btn").forEach(b=>b.classList.toggle("selected",b.dataset.l2practice===jenis));
+  document.getElementById("l2PracticeFeedback").textContent =
+    jenis==="crescendo" ? "＜ Mulakan dengan p dan kuatkan suara secara beransur-ansur hingga f." :
+                          "＞ Mulakan dengan f dan lembutkan suara secara beransur-ansur hingga p.";
+}
+function putarRodaL2() {
+  if (l2AssessmentRunning) return;
+
+  /* Pilih salah satu daripada dua tugasan. Roda sentiasa berhenti
+     di TENGAH kawasan warna, bukan pada garisan sempadan. */
+  l2WheelTarget=Math.random()<0.5?"crescendo":"decrescendo";
+
+  /* Anak panah berada di atas (0°).
+     Dengan reka bentuk roda semasa:
+     - biru = separuh kanan
+     - merah jambu = separuh kiri
+     Jadi pusat setiap kawasan ialah ±90° daripada sempadan.
+     Offset 90° memastikan pointer berhenti jauh dari garisan tengah. */
+  const targetOffset = l2WheelTarget==="crescendo" ? 90 : 270;
+
+  /* Kekalkan putaran sentiasa ke hadapan dan tambah 4 pusingan penuh.
+     Normalisasi dahulu supaya setiap spin berakhir tepat pada pusat sasaran. */
+  const currentNorm=((l2WheelRotation%360)+360)%360;
+  const deltaToTarget=(targetOffset-currentNorm+360)%360;
+  l2WheelRotation += 1440 + deltaToTarget;
+
+  const wheel=document.getElementById("dynamicWheel");
+  wheel.style.transform="rotate("+l2WheelRotation+"deg)";
+  document.getElementById("spinWheelBtn").disabled=true;
+  document.getElementById("wheelResult").textContent="🎵 Roda sedang berpusing...";
+
+  setTimeout(()=>{
+    const label=l2WheelTarget==="crescendo"?"＜ CRESCENDO — p → f":"＞ DECRESCENDO — f → p";
+    document.getElementById("wheelResult").textContent="🎯 "+label;
+    document.getElementById("startL2Assessment").disabled=false;
+    document.getElementById("spinWheelBtn").disabled=false;
+  },2250);
+}
+function mulaPentaksiranL2() {
+  if (!microphoneReady) { alert("Sila aktifkan mikrofon dahulu."); return; }
+  if (!l2WheelTarget) { alert("Putar roda dahulu."); return; }
+  if (l2AssessmentRunning) return;
+  l2AssessmentDuration=Number(document.getElementById("l2Duration").value)||8;
+  l2AssessmentRunning=true;
+  l2AssessmentStart=performance.now();
+  l2AssessmentSamples=[];
+  l2VisualPos=null;
+  const l2Marker=document.getElementById("l2AssessMarker");
+  if(l2Marker) l2Marker.style.opacity="0";
+  document.getElementById("l2Result").style.display="none";
+  document.getElementById("recordDecisionL2").style.display="none";
+  pendingAssessmentRecord=null; pendingAssessmentAudio=null;
+  document.getElementById("l2AssessmentLive").style.display="block";
+  document.getElementById("l2LiveTarget").textContent=l2WheelTarget==="crescendo"?"CRESCENDO (p → f)":"DECRESCENDO (f → p)";
+  document.getElementById("l2TargetArrow").textContent=l2WheelTarget==="crescendo"?"p  →  semakin kuat  →  f":"f  →  semakin lembut  →  p";
+  document.getElementById("startL2Assessment").disabled=true;
+  document.getElementById("spinWheelBtn").disabled=true;
+  mulaRakamanPentaksiran("Level 2");
+  if (l2TimerHandle) clearInterval(l2TimerHandle);
+  l2TimerHandle=setInterval(()=>{
+    const elapsed=(performance.now()-l2AssessmentStart)/1000;
+    const remain=Math.max(0,l2AssessmentDuration-elapsed);
+    document.getElementById("l2Timer").textContent=remain.toFixed(1)+" s";
+    if (elapsed>=l2AssessmentDuration) tamatPentaksiranL2();
+  },100);
+}
+function kemasKiniLevel2() {
+  const pos=posisiMeterAssessmentDaripadaDb(smoothedDb);
+  const bunyiAktif = smoothedDb > boundaries.activeGate;
+
+  /* PRAKTIS:
+     Marker tidak dipaksa bermula dari p.
+     Bunyi aktif pertama menentukan titik mula sebenar murid.
+     Selepas itu barulah marker bergerak secara smooth. */
+  if (l2PracticeMode) {
+    const pm=document.getElementById("l2PracticeMarker");
+    if (pm && bunyiAktif) {
+      if (!l2PracticeHasSound) {
+        l2PracticeHasSound=true;
+        pm.dataset.pos=pos.toFixed(2);
+        pm.style.left=pos.toFixed(2)+"%";
+        pm.style.opacity="1";
+      } else {
+        const current=parseFloat(pm.dataset.pos);
+        const next=current+(pos-current)*0.07;
+        pm.dataset.pos=next.toFixed(2);
+        pm.style.left=next.toFixed(2)+"%";
+      }
+    }
+  }
+
+  if (!l2AssessmentRunning) return;
+  const elapsed=(performance.now()-l2AssessmentStart)/1000;
+  const progress=Math.max(0,Math.min(1,elapsed/l2AssessmentDuration));
+  const marker=document.getElementById("l2AssessMarker");
+
+  /* PENTAKSIRAN:
+     Tunggu bunyi aktif pertama. Marker terus muncul tepat pada aras
+     suara permulaan murid (contoh f untuk decrescendo), bukan bergerak dari p. */
+  if (bunyiAktif) {
+    if (l2VisualPos === null) {
+      l2VisualPos=pos;
+      if(marker){
+        marker.style.left=pos.toFixed(2)+"%";
+        marker.style.opacity="1";
+      }
+    } else {
+      l2VisualPos += (pos-l2VisualPos)*0.06;
+      if(marker) marker.style.left=l2VisualPos.toFixed(2)+"%";
+    }
+    l2AssessmentSamples.push({t:progress,pos:pos});
+  }
+
+  const fb=document.getElementById("l2AssessFeedback");
+  if (l2VisualPos === null) {
+    fb.textContent="🎤 Mulakan bunyi anda...";
+    return;
+  }
+
+  const expected=l2WheelTarget==="crescendo" ? 12.5+75*progress : 87.5-75*progress;
+  const diff=l2VisualPos-expected;
+  if (Math.abs(diff)<14) fb.textContent="✨ Bagus — teruskan perubahan secara beransur-ansur.";
+  else if (diff<0) fb.textContent="⬆️ Naikkan sedikit mengikut laluan perubahan.";
+  else fb.textContent="⬇️ Turunkan sedikit mengikut laluan perubahan.";
+}
+function tamatPentaksiranL2() {
+  if(!l2AssessmentRunning) return;
+  l2AssessmentRunning=false;
+  if(l2TimerHandle){clearInterval(l2TimerHandle);l2TimerHandle=null;}
+  document.getElementById("l2Timer").textContent="0.0 s";
+  document.getElementById("startL2Assessment").disabled=false;
+  document.getElementById("spinWheelBtn").disabled=false;
+
+  let score=0, message="";
+  const samples=l2AssessmentSamples;
+  if(samples.length>=4){
+    const n=samples.length;
+    const q=Math.max(1,Math.floor(n*0.2));
+    const avg=a=>a.reduce((x,y)=>x+y,0)/a.length;
+    const startAvg=avg(samples.slice(0,q).map(x=>x.pos));
+    const endAvg=avg(samples.slice(-q).map(x=>x.pos));
+    const direction=l2WheelTarget==="crescendo" ? endAvg-startAvg : startAvg-endAvg;
+    let correctSteps=0, totalSteps=0;
+    for(let i=1;i<n;i++){
+      const delta=samples[i].pos-samples[i-1].pos;
+      if(Math.abs(delta)<1.2) continue;
+      totalSteps++;
+      if((l2WheelTarget==="crescendo"&&delta>0)||(l2WheelTarget==="decrescendo"&&delta<0)) correctSteps++;
+    }
+    const trendScore=Math.max(0,Math.min(100,(direction/65)*100));
+    const smoothScore=totalSteps?correctSteps/totalSteps*100:0;
+    score=Math.round(trendScore*0.65+smoothScore*0.35);
+    if(score>=75) message="🌟 Perubahan dinamik jelas dan beransur-ansur.";
+    else if(score>=50) message="👍 Arah perubahan betul, cuba jadikan perubahan lebih sekata.";
+    else message="🔁 Cuba lagi dan pastikan suara bergerak perlahan-lahan dari mula hingga akhir.";
+  } else {
+    message="🎤 Bunyi aktif tidak mencukupi untuk dinilai.";
+  }
+  const l2Name=document.getElementById("l2StudentName").value.trim()||"Tanpa nama";
+  const l2Class=document.getElementById("l2StudentClass").value.trim();
+  pendingAssessmentRecord={
+    timestamp:Date.now(),
+    date:new Date().toLocaleString("ms-MY"),
+    name:l2Name,
+    className:l2Class,
+    level:"Level 2",
+    target:l2WheelTarget==="crescendo"?"Crescendo (p → f)":"Decrescendo (f → p)",
+    score:score,
+    duration:l2AssessmentDuration
+  };
+  hentikanRakamanPentaksiran();
+
+  const result=document.getElementById("l2Result");
+  result.innerHTML="🏆 <strong>Keputusan Level 2</strong><br><br>Ketepatan perubahan: "+score+"%<br>"+message;
+  result.style.display="block";
+  document.getElementById("recordDecisionL2").style.display="block";
+}
+setInterval(kemasKiniLevel2,100);
+
 </script>
 
 </body>
